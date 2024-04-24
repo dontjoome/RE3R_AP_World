@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "City Streets"
+    },
+	{
+        "id": 2,
+        "name": "Sewers"
+    },
+	{
+        "id": 3,
+        "name": "Raccoon Police Department"
+    },
+	{
+        "id": 4,
+        "name": "Clock Tower"
+    },
+	{
+        "id": 5,
+        "name": "Hospital"
+    },
+	{
+        "id": 6,
+        "name": "NEST 2"
+    }
+]
