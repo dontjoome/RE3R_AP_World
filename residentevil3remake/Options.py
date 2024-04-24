@@ -1,14 +1,14 @@
 from Options import Choice, OptionList, NamedRange
 
 class Character(Choice):
-    """Jill: Only Choice.
+    """Jill: Only choice.
     """
     display_name = "Character to Play"
     option_jill = 0
     default = 0
 
 class Scenario(Choice):
-    """A: Only Choice.
+    """A: Only letter.
     """
     display_name = "Scenario to Play"
     option_a = 0
@@ -29,7 +29,8 @@ class UnlockedTypewriters(OptionList):
     display_name = "Unlocked Typewriters"
 
 class StartingHipPouches(NamedRange):
-    """Not Implemented yet, but soon."""
+    """The number of hip pouches you want to start the game with, to a max of 6. 
+    Any that you start with are taken out of the item pool and replaced with junk."""
     default = 0
     range_start = 0
     range_end = 6
@@ -41,7 +42,9 @@ class StartingHipPouches(NamedRange):
     }
 
 class BonusStart(Choice):
-    """Not Implemented yet, but soon."""
+    """Some players might want to start with a little help in the way of a few extra heal items and packs of ammo.
+    False: Normal, don't start with extra heal items and packs of ammo.
+    True: Start with those helper items."""
     display_name = "Bonus Start"
     option_false = 0
     option_true = 1
