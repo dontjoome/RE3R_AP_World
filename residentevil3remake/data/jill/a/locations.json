@@ -107,7 +107,8 @@
         "condition": {},
         "item_object": "sm70_205",
         "parent_object": "ItemPositions",
-        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0208_0/gimmick"  
+        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0208_0/gimmick",
+        "randomized": 0  
 	},
 	{
         "name": "Inside Cop Car",
@@ -522,7 +523,8 @@
         "condition": {},
         "item_object": "sm70_100",
         "parent_object": "ItemPositions",
-        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0402_0/gimmick"  
+        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0402_0/gimmick"
+        "randomized": 0  
 	},
 	{
         "name": "By Portable Generator",
