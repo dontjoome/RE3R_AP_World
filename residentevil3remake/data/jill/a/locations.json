@@ -2161,7 +2161,7 @@
             "items": ["Lock Pick", "Vaccine Sample"]
         },
         "item_object": "sm70_103",
-        "parent_object": "KeyAttache_MagnumBullet",
+        "parent_object": "KeyLocker_MagnumBullet",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem"	
 	},
 	{
