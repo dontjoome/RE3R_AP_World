@@ -1440,7 +1440,7 @@
         "region": "Plaza",
         "original_item": "Shotgun Shells",
         "condition": {},
-        "item_object": "sm70_100",
+        "item_object": "sm70_101",
         "parent_object": "sm70_101sgshell",
         "folder_path": "RopewayContents/World/Location_ClockTower/LocationLevel_ClockTower/Item"
 	},
@@ -1458,7 +1458,7 @@
         "region": "Plaza",
         "original_item": "Shotgun Shells",
         "condition": {},
-        "item_object": "sm70_100",
+        "item_object": "sm70_101",
         "parent_object": "sm70_101sgshell_Car01B_00",
         "folder_path": "RopewayContents/World/Location_ClockTower/Environments/st03_0806_0/gimmick"
 	},
