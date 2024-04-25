@@ -16,8 +16,8 @@
 	{ 
         "name": "Downtown - Tool Shop", 
         "location_id": 4, 
-        "map_id": 167, 
-        "player_position": [-83.04, 0.0, -159.41], 
+        "map_id": 154, 
+        "player_position": [-82.7, 0.0, -159.51], 
         "item_object": "0221_sm41_000_Typewriter01A_00_control" 
     },
 	{ 
@@ -138,7 +138,7 @@
 	{ 
         "name": "NEST 2 - Staff Break Room", 
         "location_id": 13, 
-        "map_id": 317, 
+        "map_id": 320, 
         "player_position": [-134.95, -68.0, -684.47], 
         "item_object": "0302_sm41_000_Typewriter01A_00_control"	
     }
