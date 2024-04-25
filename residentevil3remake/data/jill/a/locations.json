@@ -121,7 +121,7 @@
 	},
 	{
         "name": "Toy Shop Counter",
-        "region": "Main Avenue",
+        "region": "Toy Shop",
         "original_item": "Fancy Box - Green Jewel",
         "condition": {},
         "item_object": "sm73_311",
@@ -2437,7 +2437,7 @@
         "condition": {},
         "item_object": "sm70_001",
         "parent_object": "sm70_001",
-        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0108_0/gimmick"	
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"	
 	},
 	{
         "name": "On Cart 2",
@@ -2446,7 +2446,7 @@
         "condition": {},
         "item_object": "sm70_207",
         "parent_object": "sm70_207",
-        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0108_0/gimmick"	
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"	
 	},
 	{
         "name": "On Floor",
@@ -2558,7 +2558,8 @@
         },
         "item_object": "sm73_502",
         "parent_object": "ItemPositions",
-        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0108_0/gimmick"
+        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0108_0/gimmick",
+		"randomized": 0
 	},
 	{
         "name": "Weapon Crate 1",
@@ -2603,7 +2604,8 @@
         "condition": {},
         "item_object": "sm70_206",
         "parent_object": "ItemPositions",
-        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0202_0/gimmick"
+        "folder_path": "RopewayContents/World/Location_Laboratory/Environments/st05_0202_0/gimmick",
+		"randomized": 0
 	},
 	{
         "name": "Attache Case",
