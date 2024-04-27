@@ -36,13 +36,14 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area"
     },
 	{
-        "name": "Inside Crate",
+        "name": "Breakable Box",
         "region": "Subway Station",
         "original_item": "Red Herb",
         "condition": {},
         "item_object": "sm70_002",
         "parent_object": "ItemPositions",
-        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0201_0/gimmick"
+        "folder_path": "RopewayContents/World/Location_DownTown/Environments/st03_0201_0/gimmick",
+        "randomized": 0
     },
 	{
         "name": "Supply Crate - Shotgun Shells",
