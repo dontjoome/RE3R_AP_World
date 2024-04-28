@@ -1733,16 +1733,6 @@
 	"randomized": 0
 	},
 	{
-        "name": "Overbed Table",
-        "region": "Treatment Room",
-        "original_item": "Assault Rifle Ammo",
-        "condition": {},
-        "item_object": "sm70_102",
-        "parent_object": "st04_0209_sm70_102_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0209",
-	"randomized": 0
-	},
-	{
         "name": "Overbed Table 1",
         "region": "Treatment Room",
         "original_item": "Cassette Tape",
