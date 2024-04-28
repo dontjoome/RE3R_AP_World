@@ -694,7 +694,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/I_BatteryKey_Room"
 	},
 	{
-        "name": "Refridgerator",
+        "name": "Refrigerator",
         "region": "Sewer Laboratory",
         "original_item": "High-Grade Gunpowder",
         "condition": {},
