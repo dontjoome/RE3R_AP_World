@@ -1533,7 +1533,7 @@
 	"randomized": 0
 	},
 	{
-        "name": "Breakable Box",
+        "name": "Breakable Box 1",
         "region": "Emergency Entrance",
         "original_item": "Handgun Ammo",
         "condition": {},
@@ -1833,7 +1833,7 @@
 	"randomized": 0
 	},
 	{
-        "name": "Breakable Box",
+        "name": "Breakable Box 2",
         "region": "Emergency Entrance",
         "original_item": "Green Herb",
         "condition": {},
