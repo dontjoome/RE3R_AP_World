@@ -2177,7 +2177,7 @@
 	},
 	{
         "name": "On Walker",
-        "region": "Sick Room",
+        "region": "Sickroom",
         "original_item": "High-Grade Gunpowder",
         "condition": {
             "items": ["Lock Pick", "Vaccine Sample"]
