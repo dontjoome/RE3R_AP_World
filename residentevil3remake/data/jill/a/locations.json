@@ -2386,6 +2386,15 @@
         "parent_object": "sm70_206",
         "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/01_LockerRoom"	
 	},
+        {
+        "name": "Near Computers",
+        "region": "Laboratory Storage",
+        "original_item": "MGL Grenade Launcher",
+        "condition": {},
+        "item_object": "WP4100",
+        "parent_object": "WP4100",
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/99_ReliefWeapon"	
+	},
 	{
         "name": "Floor by Door",
         "region": "Laboratory Storage",
