@@ -349,7 +349,7 @@
         "from": "Shower Room",
         "to": "West Hallway 2F",
         "condition": {
-            "items": ["Battery"]
+            "items": ["Safety Deposit Key", "Battery"]
         }
     },
     { 
@@ -489,7 +489,7 @@
         "from": "Laboratory Reception",
         "to": "Research Laboratory",
         "condition": {
-            "items": ["Tape Player", "Cassette Tape"]
+            "items": ["Tape Player", "Cassette Tape", "Hospital ID Card", "Locker Room Key"]
         }
     },
 	{ 

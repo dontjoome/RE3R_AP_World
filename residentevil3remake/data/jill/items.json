@@ -301,7 +301,7 @@
         "decimal": "21",
         "count": 32,
         "progression": 0,
-		"ammo": "Assault Rifle Ammo"
+	"ammo": "Assault Rifle Ammo"
     },
 	{
         "type": "Weapon",
@@ -314,9 +314,9 @@
         "type": "Weapon",
         "name": "MAG",
         "decimal": "31",
-        "count": 7,
+        "count": 8,
         "progression": 0,
-		"ammo": "MAG Ammo"
+	"ammo": "MAG Ammo"
     },
 	{
         "type": "Weapon",
@@ -329,9 +329,9 @@
         "type": "Weapon",
         "name": "MGL Grenade Launcher",
         "decimal": "42",
-        "count": 1,
+        "count": 6,
         "progression": 0,
-		"ammo": "Explosive Rounds"
+	"ammo": "Explosive Rounds"
     },
 	{
         "type": "Weapon",
