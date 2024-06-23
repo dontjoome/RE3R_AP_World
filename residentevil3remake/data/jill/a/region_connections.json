@@ -248,7 +248,7 @@
         "from": "Outside Gun Shop",
         "to": "Small Alley",
         "condition": {
-            "items": ["Kendo's Gate Key"]
+            "items": ["Kendo Gate Key"]
         }
     },
 	{ 
@@ -270,7 +270,7 @@
         "from": "Subway Station",
         "to": "West Courtyard",
         "condition": {
-            "items": ["Kendo's Gate Key", "Lock Pick", "Bolt Cutters", "Fire Hose", "Battery Pack"]
+            "items": ["Kendo Gate Key", "Lock Pick", "Bolt Cutters", "Fire Hose", "Battery Pack"]
         }
     },
 	{ 
