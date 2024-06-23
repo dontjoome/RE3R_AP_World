@@ -90,8 +90,8 @@ class ResidentEvil3Remake(World):
                 # if location is not force_item'd or not not randomized, check for Downtown progression option and apply
                 # since Downtown progression option doesn't matter for force_item'd or not randomized locations
                 # we check for zone id 1 because Downtown; Sewers and beyond is able to be gotten again minus a few locations.
-                elif self._format_option_text(self.options.allow_progression_downtown) == 'True' and region_data['zone_id'] < 2:
-                    location.item_rule = lambda item: item.classification == ItemClassification.progression and item.classification == ItemClassification.progression_skip_balancing
+                elif self._format_option_text(self.options.allow_progression_downtown) == 'False' and region_data['zone_id'] == 1:
+                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
                 # END
 
                 if 'allow_item' in location_data and location_data['allow_item']:
