@@ -10,7 +10,7 @@ from ..generic.Rules import set_rule
 from Fill import fill_restrictive
 
 from .Data import Data
-from .Options import re3roptions
+from .Options import RE3ROptions
 
 
 Data.load_data('jill', 'a')
@@ -25,6 +25,10 @@ class RE3RLocation(Location):
 
         return RE3RLocation.stack_names(*area_names)
 
+    def is_item_allowed(item, location_data, current_item_rule):
+        return current_item_rule and ('allow_item' not in location_data or item.name in location_data['allow_item'])
+
+
 class ResidentEvil3Remake(World):
     """
     'Jill, I am your father.' - Nemesis, probably
@@ -32,8 +36,8 @@ class ResidentEvil3Remake(World):
     game: str = "Resident Evil 3 Remake"
 
     data_version = 2
-    required_client_version = (0, 4, 3)
-    apworld_release_version = "0.2.2" # defined to show in spoiler log
+    required_client_version = (0, 5, 0)
+    apworld_release_version = "0.1.3" # defined to show in spoiler log
 
     item_id_to_name = { item['id']: item['name'] for item in Data.item_table }
     item_name_to_id = { item['name']: item['id'] for item in Data.item_table }
@@ -41,14 +45,24 @@ class ResidentEvil3Remake(World):
     location_id_to_name = { loc['id']: RE3RLocation.stack_names(loc['region'], loc['name']) for loc in Data.location_table }
     location_name_to_id = { RE3RLocation.stack_names(loc['region'], loc['name']): loc['id'] for loc in Data.location_table }
     location_name_to_location = { RE3RLocation.stack_names(loc['region'], loc['name']): loc for loc in Data.location_table }
+    source_locations = {} # this is used to seed the initial item pool from original items, and is indexed by player as lname:loc locations
 
     # de-dupe the item names for the item group name
     item_name_groups = { key: set(values) for key, values in Data.item_name_groups.items() }
 
-    option_definitions = re3roptions
+    options_dataclass = RE3ROptions
+    options: RE3ROptions
+
+    def generate_early(self): # check weapon randomization before locations and items are processed, so we can swap non-randomized items as well
+        # start with the normal locations per player for pool, then overwrite with weapon rando if needed
+        self.source_locations[self.player] = self._get_locations_for_scenario(self._get_character(), self._get_scenario()) # id:loc combo
+        self.source_locations[self.player] = { 
+            RE3RLocation.stack_names(l['region'], l['name']): { **l, 'id': i } 
+                for i, l in self.source_locations[self.player].items() 
+        } # turn it into name:loc instead
 
     def create_regions(self): # and create locations
-        scenario_locations = self._get_locations_for_scenario(self._get_character(), self._get_scenario())
+        scenario_locations = { l['id']: l for _, l in self.source_locations[self.player].items() }
         scenario_regions = self._get_region_table_for_scenario(self._get_character(), self._get_scenario())
 
         regions = [
@@ -73,7 +87,23 @@ class ResidentEvil3Remake(World):
                 # if/elif here allows force_item + randomized=0, since a forced item is technically not randomized, but don't need to trigger both.
                 elif 'randomized' in location_data and location_data['randomized'] == 0:
                     location.place_locked_item(self.create_item(location_data["original_item"]))
-                # END if
+                # if location is not force_item'd or not not randomized, check for Downtown progression option and apply
+                # since Downtown progression option doesn't matter for force_item'd or not randomized locations
+                # we check for zone id 1 because Downtown; Sewers and beyond is able to be gotten again minus a few locations.
+                elif self._format_option_text(self.options.allow_progression_downtown) == 'False' and region_data['zone_id'] == 1:
+                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
+                # we check for zone id 6 because Labs; progression being here is just a feelsbad.    
+                elif self._format_option_text(self.options.allow_progression_labs) == 'False' and region_data['zone_id'] == 6:
+                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
+                # END
+
+                if 'allow_item' in location_data and location_data['allow_item']:
+                    current_item_rule = location.item_rule or None
+
+                    if not current_item_rule:
+                        current_item_rule = lambda x: True
+
+                    location.item_rule = lambda item: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
 
                 # now, set rules for the location access
                 if "condition" in location_data and "items" in location_data["condition"]:
@@ -106,7 +136,7 @@ class ResidentEvil3Remake(World):
         self.multiworld.completion_condition[self.player] = lambda state: self._has_items(state, ['Victory'])
 
     def create_items(self):
-        scenario_locations = self._get_locations_for_scenario(self._get_character(), self._get_scenario())
+        scenario_locations = self.source_locations[self.player]
 
         pool = [
             self.create_item(item['name'] if item else None) for item in [
@@ -123,7 +153,7 @@ class ResidentEvil3Remake(World):
                 pool.remove(filled_location.item)
 
         # check the starting hip pouches option and add as precollected, removing from pool and replacing with junk
-        starting_hip_pouches = int(self.multiworld.starting_hip_pouches[self.player])
+        starting_hip_pouches = int(self.options.starting_hip_pouches)
 
         if starting_hip_pouches > 0:
             hip_pouches = [item for item in pool if item.name == 'Hip Pouch'] # 6 total in every campaign, I think
@@ -131,23 +161,117 @@ class ResidentEvil3Remake(World):
             # if the hip pouches option exceeds the number of hip pouches in the pool, reduce it to the number in the pool
             if starting_hip_pouches > len(hip_pouches):
                 starting_hip_pouches = len(hip_pouches)
-                self.multiworld.starting_hip_pouches[self.player] = len(hip_pouches)
+                self.options.starting_hip_pouches = len(hip_pouches)
 
             for x in range(starting_hip_pouches):
                 self.multiworld.push_precollected(hip_pouches[x]) # starting inv
                 pool.remove(hip_pouches[x])
 
         # check the bonus start option and add some heal items and ammo packs as precollected / starting items
-        if self._format_option_text(self.multiworld.bonus_start[self.player]) == 'True':
+        if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'True':
+            for x in range(3): self.multiworld.push_precollected(self.create_item('First Aid Spray'))
+            for x in range(3): self.multiworld.push_precollected(self.create_item('Hand Grenade'))
+            
+        if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'False':
             for x in range(3): self.multiworld.push_precollected(self.create_item('First Aid Spray'))
             for x in range(4): self.multiworld.push_precollected(self.create_item('Handgun Ammo'))
+
+        # do all the "no X" options here so we have more empty spots to use for traps, if needed
+        if self._format_option_text(self.options.no_first_aid_spray) == 'True':
+            pool = self._replace_pool_item_with(pool, 'First Aid Spray', 'Flash Grenade')
+
+        if self._format_option_text(self.options.no_green_herb) == 'True':
+            pool = self._replace_pool_item_with(pool, 'Green Herb', 'Flash Grenade')
+
+        if self._format_option_text(self.options.no_red_herb) == 'True':
+            pool = self._replace_pool_item_with(pool, 'Red Herb', 'Flash Grenade')
+        
+        if self._format_option_text(self.options.no_gunpowder) == 'True':
+            replaceables = set(item.name for item in pool if 'Gunpowder' in item.name or 'Explosive' in item.name)
+            less_useful_items = set(
+                item.name for item in pool 
+                    if 'Flash Grenade' in item.name or 'Herb' in item.name
+            )
+
+            for from_item in replaceables:
+                to_item = self.random.choice(list(less_useful_items))
+                pool = self._replace_pool_item_with(pool, from_item, to_item)
+
+        # figure out which traps are enabled, then swap them in for low-priority items
+        # do this before the "oops all X" options so we can make use of extra Handgun Ammo spots before they get replaced out
+        traps = []
+
+        if self._format_option_text(self.options.add_damage_traps) == 'True':
+            for x in range(int(self.options.damage_trap_count)):
+                traps.append(self.create_item("Damage Trap"))
+        if len(traps) > 0:
+            # use these spots for replacement first, since they're entirely non-essential
+            available_spots = [
+                item for item in pool 
+                    if 'Explosive' in item.name or 'Gunpowder' in item.name
+            ]
+            self.random.shuffle(available_spots)
+
+            # use these spots for replacement next, since they're lower priority
+            extra_spots = [
+                item for item in pool 
+                    if 'Herb' in item.name or 'Ammo' in item.name
+            ]
+            self.random.shuffle(extra_spots)
+               
+            for spot in available_spots:
+                if len(traps) == 0: break
+
+                trap_to_place = traps.pop()
+                pool.remove(spot)
+                pool.append(trap_to_place)
+                
+            for spot in extra_spots:
+                if len(traps) == 0: break
+
+                trap_to_place = traps.pop()
+                pool.remove(spot)
+                pool.append(trap_to_place)
+				
+		# add extras for Downtown items or Sewer Stuff, if configured
+        # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
+        if self._format_option_text(self.options.extra_downtown_items) == 'True':
+            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Assault Rifle Ammo']
+            
+            for x in range(2):
+                pool.remove(replaceables[x])
+
+            pool.append(self.create_item('Fire Hose'))
+            pool.append(self.create_item('Bolt Cutters'))
+
+        if self._format_option_text(self.options.extra_sewer_items) == 'True':
+            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Assault Rifle Ammo']
+            
+            for x in range(2):
+                pool.remove(replaceables[x])
+
+            pool.append(self.create_item('Battery Pack'))
+            pool.append(self.create_item('Kendo Gate Key'))
+
+        # check the "Oops! All Grenades" option. From the option description:
+        #     Enabling this swaps all weapons, weapon ammo, and subweapons to Grenades. 
+        #     (Except progression weapons, of course.)
+        if self._format_option_text(self.options.oops_all_grenades) == 'True':
+            items_to_replace = [
+                item for item in self.item_name_to_item.values() 
+                if 'type' in item and item['type'] in ['Weapon', 'Subweapon', 'Ammo', 'Crafting']
+            ]
+            to_item_name = 'Hand Grenade'
+
+            for from_item in items_to_replace:
+                pool = self._replace_pool_item_with(pool, from_item['name'], to_item_name)
 
         # if the number of unfilled locations exceeds the count of the pool, fill the remainder of the pool with extra maybe helpful items
         missing_item_count = len(self.multiworld.get_unfilled_locations(self.player)) - len(pool)
 
         if missing_item_count > 0:
             for x in range(missing_item_count):
-                pool.append(self.create_item('Green Herb'))
+                pool.append(self.create_item('Hand Grenade'))
 
         self.multiworld.itempool += pool
             
@@ -156,25 +280,35 @@ class ResidentEvil3Remake(World):
 
         item = self.item_name_to_item[item_name]
 
-        # double filler, but accounts for key missing and key set to 
-        classification = ItemClassification.progression if 'progression' in item and item['progression'] \
-                        else ItemClassification.useful if 'progression' in item and item['type'] not in ['Lore'] \
-                        else ItemClassification.filler
+        if item.get('progression', False):
+            classification = ItemClassification.progression
+        elif item.get('type', None) not in ['Trap']:
+            classification = ItemClassification.useful
+        elif item.get('type', None) == 'Trap':
+            classification = ItemClassification.trap
+        else: # it's Filler
+            classification = ItemClassification.filler
 
         return Item(item['name'], classification, item['id'], player=self.player)
+
+    def get_filler_item_name(self) -> str:
+        return "Mine Rounds"
 
     def fill_slot_data(self) -> Dict[str, Any]:
         slot_data = {
             "character": self._get_character(),
             "scenario": self._get_scenario(),
             "difficulty": self._get_difficulty(),
-            "unlocked_typewriters": self._format_option_text(self.multiworld.unlocked_typewriters[self.player]).split(", ")
+            "unlocked_typewriters": self._format_option_text(self.options.unlocked_typewriters).split(", "),
+            "damage_traps_can_kill": self._format_option_text(self.options.damage_traps_can_kill) == 'True',
+            "death_link": self._format_option_text(self.options.death_link) == 'Yes' # why is this yes? lol
         }
 
         return slot_data
     
     def write_spoiler_header(self, spoiler_handle: TextIO):
         spoiler_handle.write(f"RE3R_AP_World version: {self.apworld_release_version}\n")
+        # print (self._output_items_and_locations_as_text()) - For printing item locations out during generation of a seed.
 
     def _has_items(self, state: CollectionState, item_names: list) -> bool:
         # if it requires all unique items, just do a state has all
@@ -202,13 +336,13 @@ class ResidentEvil3Remake(World):
         }
 
         # if the player chose hardcore, take out any matching standard difficulty locations
-        if self._format_option_text(self.multiworld.difficulty[self.player]) == 'Hardcore':
+        if self._format_option_text(self.options.difficulty) == 'Hardcore':
             for hardcore_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'hardcore']:
                 check_loc_region = re.sub('H\)$', ')', hardcore_loc['region']) # take the Hardcore off the region name
                 check_loc_name = hardcore_loc['name']
 
                 # if there's a standard location with matching name and region, it's obsoleted in hardcore, remove it
-                standard_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name]
+                standard_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'hardcore']
 
                 if len(standard_locs) > 0:
                     del locations_pool[standard_locs[0]]
@@ -218,7 +352,10 @@ class ResidentEvil3Remake(World):
             locations_pool = {
                 id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore'
             }
-            
+
+        # now that we've factored in hardcore swaps, remove any hardcore locations that were just there for removing unused standard ones
+        locations_pool = { id: loc for id, loc in locations_pool.items() if 'remove' not in loc }
+        
         return locations_pool
 
     def _get_region_table_for_scenario(self, character, scenario) -> list:
@@ -234,13 +371,13 @@ class ResidentEvil3Remake(World):
         ]
     
     def _get_character(self) -> str:
-        return self._format_option_text(self.multiworld.character[self.player]).lower()
+        return self._format_option_text(self.options.character).lower()
     
     def _get_scenario(self) -> str:
-        return self._format_option_text(self.multiworld.scenario[self.player]).lower()
+        return self._format_option_text(self.options.scenario).lower()
     
     def _get_difficulty(self) -> str:
-        return self._format_option_text(self.multiworld.difficulty[self.player]).lower()
+        return self._format_option_text(self.options.difficulty).lower()
     
     def _replace_pool_item_with(self, pool, from_item_name, to_item_name) -> list:
         items_to_remove = [item for item in pool if item.name == from_item_name]
