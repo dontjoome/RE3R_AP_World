@@ -4,12 +4,6 @@ An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for us
 ## How to generate and play an RE3R randomized world
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
-1. Take the apworld file from the most recent [Release](https://github.com/dontjoome/RE3R_AP_World/releases) here and put it in the `lib/worlds` folder of your normal Archipelago (AP) install.
-2. Take the example YAML file from [Release](https://github.com/dontjoome/RE3R_AP_World/releases/download/0.1.0/Resident.Evil.3.Remake.yaml) here and put it in the `Players` folder of your normal AP install.
-3. In your normal AP install, run `ArchipelagoGenerate.exe`. It will place the generated multiworld in the `output` folder.
-4. If you want to host the multiworld on the AP website, upload the zip that was generated in the `output` folder.
-5. If you want to host the multiworld locally, run `ArchipelagoServer.exe` and choose the zip that was generated in the `output` folder.
-
 ## What scenario/difficulty does this support?
 Standard and Hardcore, for now. Planned to include Nightmare/Inferno eventually.
 
