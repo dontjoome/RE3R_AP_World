@@ -34,12 +34,12 @@ There are multiple item types to choose from:
 - Key = These are high-priority gating items that unlock major progression
 - Gating = These are low-priority gating items that unlock only a few locations
 - Consumable = These are non-progression but likely useful items that are consumed on use
+- Crafting = These are the same as Consumable, just categorized as powders/explosives
 - Recovery = These are the same as Consumable, but further categorized as healing items
 - Weapon = These are weapons that consume ammunition (so the Combat Knife is not included)
 - Subweapon = These are weapons that do not consume ammunition, and many of these are throwable
 - Ammo = These are all the ammo types for use with the Weapon item type
 - Upgrade = These are all the weapon upgrades for use with the Weapon item type
-- Lore = These are all non-progression, non-useful items that are classified as filler
 
 ##### Decimal
 The decimal field is a decimal (base 10) representation of the item's in-game hex code. This is how the randomizer client translates a named item to an in-game item.
