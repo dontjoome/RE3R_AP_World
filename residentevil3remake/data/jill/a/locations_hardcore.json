@@ -1,5 +1,15 @@
 [
     {
+        "name": "Near Computers",
+        "region": "Laboratory Storage",
+        "original_item": "MGL Grenade Launcher",
+        "condition": {},
+        "item_object": "WP4100",
+        "parent_object": "WP4100",
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/99_ReliefWeapon",
+        "randomized": 0
+    },
+    {
         "name": "Final Fight 10",
         "region": "Weapons Testing Area",
         "original_item": "Handgun Ammo",
@@ -36,11 +46,6 @@
     {
         "name": "Munitions 5",
         "region": "Back Office",
-        "remove": true
-    },
-    {
-        "name": "Near Computers",
-        "region": "Laboratory Storage",
         "remove": true
     }
 ]
