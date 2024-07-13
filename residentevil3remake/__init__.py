@@ -215,7 +215,7 @@ class ResidentEvil3Remake(World):
             # use these spots for replacement next, since they're lower priority
             extra_spots = [
                 item for item in pool 
-                    if 'Herb' in item.name or 'Ammo' in item.name
+                    if 'Herb' in item.name or 'Ammo' in item.name or 'Rounds' in item.name or 'Grenade' in item.name
             ]
             self.random.shuffle(extra_spots)
                
@@ -236,7 +236,7 @@ class ResidentEvil3Remake(World):
 		# add extras for Downtown items or Sewer Stuff, if configured
         # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
         if self._format_option_text(self.options.extra_downtown_items) == 'True':
-            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Assault Rifle Ammo']
+            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
             
             for x in range(2):
                 pool.remove(replaceables[x])
@@ -245,7 +245,7 @@ class ResidentEvil3Remake(World):
             pool.append(self.create_item('Bolt Cutters'))
 
         if self._format_option_text(self.options.extra_sewer_items) == 'True':
-            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Assault Rifle Ammo']
+            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
             
             for x in range(2):
                 pool.remove(replaceables[x])
@@ -259,9 +259,23 @@ class ResidentEvil3Remake(World):
         if self._format_option_text(self.options.oops_all_grenades) == 'True':
             items_to_replace = [
                 item for item in self.item_name_to_item.values() 
-                if 'type' in item and item['type'] in ['Weapon', 'Subweapon', 'Ammo', 'Crafting']
+                if 'type' in item and item['type'] in ['Weapon', 'Ammo', 'Crafting']
             ]
             to_item_name = 'Hand Grenade'
+
+            for from_item in items_to_replace:
+                pool = self._replace_pool_item_with(pool, from_item['name'], to_item_name)
+                
+        # check the "Oops! All Handguns" option. From the option description:
+        #     Enabling this swaps all weapons, weapon ammo, and subweapons to Handgun Ammo. 
+        #     (Except handguns, of course.)
+                
+        if self._format_option_text(self.options.oops_all_handguns) == 'True':
+            items_to_replace = [
+                item for item in self.item_name_to_item.values() 
+                if 'type' in item and item['type'] in ['Weapon', 'Subweapon', 'Ammo', 'Crafting'] and item['name'] != 'G18'
+            ]
+            to_item_name = 'Handgun Ammo'
 
             for from_item in items_to_replace:
                 pool = self._replace_pool_item_with(pool, from_item['name'], to_item_name)
@@ -271,7 +285,7 @@ class ResidentEvil3Remake(World):
 
         if missing_item_count > 0:
             for x in range(missing_item_count):
-                pool.append(self.create_item('Hand Grenade'))
+                pool.append(self.create_item('Flash Grenade'))
 
         self.multiworld.itempool += pool
             
@@ -292,7 +306,7 @@ class ResidentEvil3Remake(World):
         return Item(item['name'], classification, item['id'], player=self.player)
 
     def get_filler_item_name(self) -> str:
-        return "Mine Rounds"
+        return "Flash Grenade"
 
     def fill_slot_data(self) -> Dict[str, Any]:
         slot_data = {

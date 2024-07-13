@@ -112,6 +112,14 @@ class OopsAllGrenades(Choice):
     option_false = 0
     option_true = 1
     default = 0
+    
+class OopsAllHandguns(Choice):
+    """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Handgun Ammo. 
+    (Except your starting weapons, of course.)"""
+    display_name = "Oops! Only Handgun"
+    option_false = 0
+    option_true = 1
+    default = 0
 	
 class NoFirstAidSpray(Choice):
     """Enabling this swaps all first aid sprays to filler or less useful items. 
@@ -194,6 +202,7 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     allow_progression_downtown: AllowProgressionDowntown
     allow_progression_labs: AllowProgressionLabs
     oops_all_grenades: OopsAllGrenades
+    oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray
     no_green_herb: NoGreenHerb
     no_red_herb: NoRedHerb
