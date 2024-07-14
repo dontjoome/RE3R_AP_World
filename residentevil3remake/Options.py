@@ -31,16 +31,17 @@ class UnlockedTypewriters(OptionList):
     display_name = "Unlocked Typewriters"
 
 class StartingHipPouches(NamedRange):
-    """The number of hip pouches you want to start the game with, to a max of 6 (or 5 for Hardcore). 
+    """The number of hip pouches you want to start the game with, to a max of 3. 
     Any that you start with are taken out of the item pool and replaced with junk."""
     default = 0
     range_start = 0
-    range_end = 6
+    range_end = 3
     display_name = "Starting Hip Pouches"
     special_range_names = {
-        "disabled": 0,
-        "half": 3,
-        "all": 6,
+        "pockets": 0,
+        "fanny pack": 1,
+        "purse": 2,
+        "backpack": 3
     }
 
 class BonusStart(Choice):
@@ -91,7 +92,7 @@ class AllowProgressionDowntown(Choice):
     option_true = 1
     default = 0
     
-class AllowProgressionLabs(Choice):
+class AllowProgressionInLabs(Choice):
     """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
     This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
 
@@ -107,7 +108,7 @@ class AllowProgressionLabs(Choice):
 	
 class OopsAllGrenades(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
-    (Except progression weapons, of course.)"""
+    (Except your starting weapon, the shotgun, and maybe one grenade launcher if it decides to spawn in the labs.)"""
     display_name = "Oops! All Grenades"
     option_false = 0
     option_true = 1
@@ -115,7 +116,7 @@ class OopsAllGrenades(Choice):
     
 class OopsAllHandguns(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Handgun Ammo. 
-    (Except your starting weapons, of course.)"""
+    (Except your starting weapon, the shotgun, and maybe one grenade launcher if it decides to spawn in the labs)"""
     display_name = "Oops! Only Handgun"
     option_false = 0
     option_true = 1
@@ -200,7 +201,7 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     extra_downtown_items: ExtraDowntownItems
     extra_sewer_items: ExtraSewerItems
     allow_progression_downtown: AllowProgressionDowntown
-    allow_progression_labs: AllowProgressionLabs
+    allow_progression_in_labs: AllowProgressionInLabs
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray

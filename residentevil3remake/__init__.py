@@ -93,7 +93,7 @@ class ResidentEvil3Remake(World):
                 elif self._format_option_text(self.options.allow_progression_downtown) == 'False' and region_data['zone_id'] == 1:
                     location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
                 # we check for zone id 6 because Labs; progression being here is just a feelsbad.    
-                elif self._format_option_text(self.options.allow_progression_labs) == 'False' and region_data['zone_id'] == 6:
+                elif self._format_option_text(self.options.allow_progression_in_labs) == 'False' and region_data['zone_id'] == 6:
                     location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
                 # END
 
