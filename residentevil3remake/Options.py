@@ -77,34 +77,34 @@ class ExtraSewerItems(Choice):
     option_true = 1
     default = 0
 
-class AllowProgressionDowntown(Choice):
+class ForbidProgressionDowntown(Choice):
     """Accidentally skipping item locations early can lead to softlocking as certain story triggers make it impossible to backtrack. 
     This option seeks to avoid that by limiting item placements.
 
-    False: (Default) Will place your items into locations that are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
-    This severely limits where progression can be to prevent softlocking of any kind. Will also remove progression for others if multiworld.
+    False: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
     
-    True: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
+    True: (Default) Will place your items into locations that are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
+    This severely limits where progression can be to prevent softlocking of any kind. Will also remove progression for others if multiworld.
 
     NOTE - This option only affects *YOUR* Downtown. Your progression can still be in someone else's if they have this option enabled."""
-    display_name = "Allow Progression Downtown"
+    display_name = "Forbid Progression Downtown"
     option_false = 0
     option_true = 1
-    default = 0
+    default = 1
     
-class AllowProgressionInLabs(Choice):
+class ForbidProgressionInLabs(Choice):
     """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
     This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
 
-    False: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
+    False: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
-    True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
+    True: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
 
     NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
     display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
-    default = 0
+    default = 1
 	
 class OopsAllGrenades(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
@@ -200,8 +200,8 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     bonus_start: BonusStart
     extra_downtown_items: ExtraDowntownItems
     extra_sewer_items: ExtraSewerItems
-    allow_progression_downtown: AllowProgressionDowntown
-    allow_progression_in_labs: AllowProgressionInLabs
+    forbid_progression_downtown: ForbidProgressionDowntown
+    forbid_progression_in_labs: ForbidProgressionInLabs
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray
