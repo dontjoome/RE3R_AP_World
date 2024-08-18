@@ -23,6 +23,7 @@ class Difficulty(Choice):
     display_name = "Difficulty to Play On"
     option_standard = 0
     option_hardcore = 1
+    option_nightmare = 2
     default = 0
 
 class UnlockedTypewriters(OptionList):
@@ -30,19 +31,20 @@ class UnlockedTypewriters(OptionList):
     """
     display_name = "Unlocked Typewriters"
 
-class StartingHipPouches(NamedRange):
+class StartingHipPouches(Choice):
     """The number of hip pouches you want to start the game with, to a max of 3. 
-    Any that you start with are taken out of the item pool and replaced with junk."""
-    default = 0
-    range_start = 0
-    range_end = 3
+    Any that you start with are taken out of the item pool and replaced with junk.
+    
+    Pockets: Equivalent of zero starting hip pouches. 
+    Fanny pack: Equivalent of one starting hip pouch. 
+    Purse: Equivalent of two starting hip pouches.
+    Backpack: Equivalent of three starting hip pouches."""
     display_name = "Starting Hip Pouches"
-    special_range_names = {
-        "pockets": 0,
-        "fanny pack": 1,
-        "purse": 2,
-        "backpack": 3
-    }
+    option_pockets = 0
+    option_fanny_pack = 1
+    option_purse = 2
+    option_backpack = 3
+    default = 0
 
 class BonusStart(Choice):
     """Some players might want to start with a little help in the way of a few extra heal items and packs of ammo.
@@ -183,6 +185,50 @@ class DamageTrapsCanKill(Choice):
     option_false = 0
     option_true = 1
     default = 0
+    
+class AddParasiteTraps(Choice):
+    """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
+    These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
+    """
+    display_name = "Add Parasite Traps"
+    option_false = 0
+    option_true = 1
+    default = 0
+
+class ParasiteTrapCount(NamedRange):
+    """While the "AddParasiteTraps" option is enabled, this option specifies how many of this trap should be placed.
+    """
+    default = 10
+    range_start = 0
+    range_end = 30 
+    display_name = "Parasite Trap Count"
+    special_range_names = {
+        "disabled": 0,
+        "half": 15,
+        "all": 30,
+    }
+    
+class AddPukeTraps(Choice):
+    """Enabling this adds traps to your game that, when received, will cause you to vomit. e.g., when you heal yourself from parasites. 
+    These traps are more of a nuisance than anything, but can be trolly if you're in the middle of combat.
+    """
+    display_name = "Add Puke Traps"
+    option_false = 0
+    option_true = 1
+    default = 0
+    
+class PukeTrapCount(NamedRange):
+    """While the "AddPukeTraps" option is enabled, this option specifies how many of this trap should be placed.
+    """
+    default = 10
+    range_start = 0
+    range_end = 30 
+    display_name = "Puke Trap Count"
+    special_range_names = {
+        "disabled": 0,
+        "half": 15,
+        "all": 30,
+    }
 
 # making this mixin so we can keep actual game options separate from AP core options that we want enabled
 # not sure why this isn't a mixin in core atm, anyways
@@ -211,4 +257,8 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     add_damage_traps: AddDamageTraps
     damage_trap_count: DamageTrapCount
     damage_traps_can_kill: DamageTrapsCanKill
+    add_parasite_traps: AddParasiteTraps
+    parasite_trap_count: ParasiteTrapCount
+    add_puke_traps: AddPukeTraps
+    puke_trap_count: PukeTrapCount
 
