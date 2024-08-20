@@ -99,6 +99,23 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare"
     },
     {
+        "name": "On Display Case",
+        "region": "Gun Shop",
+        "original_item": "Gunpowder",
+        "condition": {},
+        "item_object": "sm70_205",
+        "parent_object": "sm70_205",
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/Inferno",
+        "allow_item": [
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3"
+        ]
+    },
+    {
         "name": "Inside Security Office",
         "region": "East Courtyard",
         "original_item": "ID Card",
@@ -107,6 +124,33 @@
         "parent_object": "sm73_203",
         "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE",
         "randomized": 0
+    },
+    {
+        "name": "Table",
+        "region": "Operations Room 2",
+        "original_item": "Green Herb",
+        "condition": {},
+        "item_object": "sm70_001",
+        "parent_object": "sm70_001_onlyUnlimited",
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
+    },
+    {
+        "name": "Desk 1",
+        "region": "Darkroom",
+        "original_item": "Assault Rifle Ammo",
+        "condition": {},
+        "item_object": "sm70_102",
+        "parent_object": "sm70_102_onlyUnlimited",
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/LocationFsm_RPD/common/ES_common/GeneralPurposeGimmicks/OpenLocker"
+    },
+    {
+        "name": "Desk 2",
+        "region": "Darkroom",
+        "original_item": "Handgun Ammo",
+        "condition": {},
+        "item_object": "sm70_100",
+        "parent_object": "sm70_100_onlyUnlimited",
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/LocationFsm_RPD/common/ES_common/GeneralPurposeGimmicks/OpenLocker"
     },
     {
         "name": "Attache Case",
@@ -138,8 +182,83 @@
         "remove": true
     },
     {
-        "name": "Brad's Corpse'",
+        "name": "In Display Case",
+        "region": "Gun Shop",
+        "remove": true
+    },
+    {
+        "name": "On Weapon Crate",
+        "region": "Gun Shop",
+        "remove": true
+    },
+    {
+        "name": "On Shelf 3",
+        "region": "Gun Shop",
+        "remove": true
+    },
+    {
+        "name": "Zombie",
+        "region": "Small Alley",
+        "remove": true
+    },
+    {
+        "name": "Brad's Corpse",
         "region": "RPD Entrance",
+        "remove": true
+    },
+    {
+        "name": "Waiting Room Barricade",
+        "region": "Main Lobby",
+        "remove": true
+    },
+    {
+        "name": "Cabinet near Reception Window",
+        "region": "West Office",
+        "remove": true
+    },
+    {
+        "name": "Reception Window",
+        "region": "West Office",
+        "remove": true
+    },
+    {
+        "name": "On Cabinet",
+        "region": "Safety Deposit Room",
+        "remove": true
+    },
+    {
+        "name": "First Aid Kit",
+        "region": "STARS Office",
+        "remove": true
+    },
+    {
+        "name": "By Doors",
+        "region": "Makeshift Sickroom",
+        "remove": true
+    },
+    {
+        "name": "Admissions Desk 2",
+        "region": "Hospital Lobby",
+        "remove": true
+    },
+    {
+        "name": "Reception Desk",
+        "region": "Hospital Reception",
+        "remove": true
+    },
+    {
+        "name": "By Couch",
+        "region": "Laboratory Reception",
+        "remove": true
+    },
+    {
+        "name": "Gurney",
+        "region": "Main Corridor 2F",
+        "remove": true
+    },
+    {
+        "name": "Table",
+        "region": "Staff Room",
         "remove": true
     },
     {
@@ -158,6 +277,16 @@
         "remove": true
     },
     {
+        "name": "Desk 2",
+        "region": "Research Laboratory",
+        "remove": true
+    },
+    {
+        "name": "Desk 3",
+        "region": "Research Laboratory",
+        "remove": true
+    },
+    {
         "name": "Weapon Crate 7",
         "region": "Hospital Lobby",
         "remove": true
@@ -170,6 +299,31 @@
     {
         "name": "Munitions 5",
         "region": "Back Office",
+        "remove": true
+    },
+    {
+        "name": "Forklift",
+        "region": "Bioweapons Shipping",
+        "remove": true
+    },
+    {
+        "name": "After Dead End",
+        "region": "Warehouse",
+        "remove": true
+    },
+    {
+        "name": "In Container By Fuse 1",
+        "region": "Warehouse",
+        "remove": true
+    },
+    {
+        "name": "In Container By Fuse 2",
+        "region": "Warehouse",
+        "remove": true
+    },
+    {
+        "name": "In Container By Fuse 4",
+        "region": "Warehouse",
         "remove": true
     }
 ]

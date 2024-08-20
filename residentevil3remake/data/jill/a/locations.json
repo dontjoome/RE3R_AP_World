@@ -1034,7 +1034,7 @@
         ]
     },
     {
-        "name": "Display Case",
+        "name": "In Display Case",
         "region": "Gun Shop",
         "original_item": "Explosive B",
         "condition": {},
@@ -1087,10 +1087,10 @@
     {
         "name": "On Shelf 2",
         "region": "Gun Shop",
-        "original_item": "Explosive A",
+        "original_item": "Gunpowder",
         "condition": {},
-        "item_object": "sm70_207",
-        "parent_object": "sm70_207",
+        "item_object": "sm70_205",
+        "parent_object": "sm70_205",
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/I_KendoShop",
         "allow_item": [
             "Kendo Gate Key",
@@ -1104,10 +1104,10 @@
     {
         "name": "On Shelf 3",
         "region": "Gun Shop",
-        "original_item": "Gunpowder",
+        "original_item": "Explosive A",
         "condition": {},
-        "item_object": "sm70_205",
-        "parent_object": "sm70_205",
+        "item_object": "sm70_207",
+        "parent_object": "sm70_207",
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/I_KendoShop",
         "allow_item": [
             "Kendo Gate Key",
@@ -1153,7 +1153,7 @@
         ]
     },
     {
-        "name": "Near Zombie",
+        "name": "Zombie",
         "region": "Small Alley",
         "original_item": "Red Herb",
         "condition": {},
@@ -1400,6 +1400,16 @@
         "item_object": "RPD_Mess_ItemGet_109",
         "parent_object": "",
         "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Scenario/S02_0400/ES_S02_0400/Msg",
+        "randomized": 0
+    },
+    {
+        "name": "On Cabinet",
+        "region": "Safety Deposit Room",
+        "original_item": "Green Herb",
+        "condition": {},
+        "item_object": "sm70_001",
+        "parent_object": "sm70_001_Hokanko",
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common",
         "randomized": 0
     },
     {
@@ -1657,20 +1667,20 @@
     {
         "name": "Admissions Desk 1",
         "region": "Hospital Lobby",
-        "original_item": "First Aid Spray",
-        "condition": {},
-        "item_object": "sm70_000",
-        "parent_object": "st04_0102_sm70_000_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0102"
-    },
-    {
-        "name": "Admissions Desk 2",
-        "region": "Hospital Lobby",
         "original_item": "Assault Rifle Ammo",
         "condition": {},
         "item_object": "sm70_102",
         "parent_object": "st04_0102_sm70_102_00",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0102"
+    },
+    {
+        "name": "Admissions Desk 2",
+        "region": "Hospital Lobby",
+        "original_item": "First Aid Spray",
+        "condition": {},
+        "item_object": "sm70_000",
+        "parent_object": "st04_0102_sm70_000_00",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0102"
     },
     {
         "name": "Reception Desk",

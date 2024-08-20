@@ -91,10 +91,10 @@ class ResidentEvil3Remake(World):
                 # since Downtown progression option doesn't matter for force_item'd or not randomized locations
                 # we check for zone id 1 because Downtown; Sewers and beyond is able to be gotten again minus a few locations.
                 elif self._format_option_text(self.options.forbid_progression_downtown) == 'true' and region_data['zone_id'] == 1:
-                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
+                    location.item_rule = lambda item: item.classification == ItemClassification.progression and item.classification == ItemClassification.progression_skip_balancing
                 # we check for zone id 6 because Labs; progression being here is just a feelsbad.    
                 elif self._format_option_text(self.options.forbid_progression_in_labs) == 'true' and region_data['zone_id'] == 6:
-                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
+                    location.item_rule = lambda item: item.classification == ItemClassification.progression and item.classification == ItemClassification.progression_skip_balancing
                 # END
 
                 if 'allow_item' in location_data and location_data['allow_item']:
@@ -205,13 +205,13 @@ class ResidentEvil3Remake(World):
             for x in range(int(self.options.damage_trap_count)):
                 traps.append(self.create_item("Damage Trap"))
                 
-        if self._format_option_text(self.options.add_parasite_traps) == 'True':
-            for x in range(int(self.options.parasite_trap_count)):
-                traps.append(self.create_item("Parasite Trap"))
+        # if self._format_option_text(self.options.add_parasite_traps) == 'True':
+            # for x in range(int(self.options.parasite_trap_count)):
+                # traps.append(self.create_item("Parasite Trap"))
                 
-        if self._format_option_text(self.options.add_puke_traps) == 'True':
-            for x in range(int(self.options.puke_trap_count)):
-                traps.append(self.create_item("Puke Trap"))
+        # if self._format_option_text(self.options.add_puke_traps) == 'True':
+            # for x in range(int(self.options.puke_trap_count)):
+                # traps.append(self.create_item("Puke Trap"))
                 
         if len(traps) > 0:
             # use these spots for replacement first, since they're entirely non-essential
@@ -357,50 +357,53 @@ class ResidentEvil3Remake(World):
             loc['id']: loc for _, loc in self.location_name_to_location.items()
                 if loc['character'] == character and loc['scenario'] == scenario
         }
+        
+        if self._format_option_text(self.options.difficulty) == 'Inferno':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare'}
 
-        # if the player chose hardcore, take out any matching standard difficulty locations
-        if self._format_option_text(self.options.difficulty) == 'Nightmare':
-            for nightmare_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'nightmare']:
-                check_loc_region = re.sub('N\)$', ')', nightmare_loc['region']) # take the Hardcore off the region name
-                check_loc_name = nightmare_loc['name']
+            for inferno_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'inferno']:
+                check_loc_region = re.sub('I\)$', ')', inferno_loc['region']) # take the Inferno off the region name
+                check_loc_name = inferno_loc['name']
 
-                # if there's a location with matching name and region, it's obsoleted in hardcore, remove it
-                hardcore_locs = [id for id, loc in locations_pool.items() if loc['difficulty'] == 'hardcore']
-
-                if len(hardcore_locs) > 0:
-                    del locations_pool[hardcore_locs[0]]
-
-                # if there's a location with matching name and region, it's obsoleted in hardcore, remove it
-                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare']
+                # if there's a location with matching name and region, remove it
+                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'inferno']
 
                 if len(matching_locs) > 0:
                     del locations_pool[matching_locs[0]]
 
-        # if the player chose hardcore, take out any matching standard difficulty locations
+        elif self._format_option_text(self.options.difficulty) == 'Nightmare':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'inferno'}
+
+            for nightmare_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'nightmare']:
+                check_loc_region = re.sub('N\)$', ')', nightmare_loc['region']) # take the Nightmare off the region name
+                check_loc_name = nightmare_loc['name']
+
+                # if there's a location with matching name and region, remove it
+                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'nightmare']
+
+                if len(matching_locs) > 0:
+                    del locations_pool[matching_locs[0]]
+                        
         elif self._format_option_text(self.options.difficulty) == 'Hardcore':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'nightmare' and loc['difficulty'] != 'inferno'}
+
             for hardcore_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'hardcore']:
                 check_loc_region = re.sub('H\)$', ')', hardcore_loc['region']) # take the Hardcore off the region name
                 check_loc_name = hardcore_loc['name']
 
-                # if there's a location with matching name and region, it's obsoleted in hardcore, remove it
-                nightmare_locs = [id for id, loc in locations_pool.items() if loc['difficulty'] == 'nightmare']
-
-                if len(nightmare_locs) > 0:
-                    del locations_pool[nightmare_locs[0]]
-
-                # if there's a location with matching name and region, it's obsoleted in hardcore, remove it
+                # if there's a location with matching name and region, remove it
                 matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'hardcore']
 
                 if len(matching_locs) > 0:
-                    del locations_pool[matching_locs[0]] 
+                    del locations_pool[matching_locs[0]]
 
-        # else, the player is still playing standard, take out all of the matching hardcore difficulty locations
+        # else, the player is still playing standard, take out all of the matching difficulty locations
         else:
             locations_pool = {
-                id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare'
+                id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare' and loc['difficulty'] != 'inferno'
             }
-
-        # now that we've factored in swaps, remove any hardcore locations that were just there for removing unused standard ones
+     
+        # now that we've factored in swaps, remove any locations that were just there for removing unused standard ones
         locations_pool = { id: loc for id, loc in locations_pool.items() if 'remove' not in loc }
         
         return locations_pool

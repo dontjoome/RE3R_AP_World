@@ -19,11 +19,14 @@ class Scenario(Choice):
 
 class Difficulty(Choice):
     """Standard: Most people should play on this.
-    Hardcore: Good luck, and thanks for testing deaths. Kappa"""
+    Hardcore: Slightly tougher, but not by much. 
+    Nightmare: It actually rains zombies, Kappa
+    Inferno: Hope your name isn't Gohan, because you need to dodge... a lot"""
     display_name = "Difficulty to Play On"
     option_standard = 0
     option_hardcore = 1
     option_nightmare = 2
+    option_inferno = 3
     default = 0
 
 class UnlockedTypewriters(OptionList):
@@ -103,7 +106,7 @@ class ForbidProgressionInLabs(Choice):
     True: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
 
     NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
-    display_name = "Allow Progression in Labs"
+    display_name = "Forbid Progression in Labs"
     option_false = 0
     option_true = 1
     default = 1
@@ -119,7 +122,7 @@ class OopsAllGrenades(Choice):
 class OopsAllHandguns(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Handgun Ammo. 
     (Except your starting weapon, the shotgun, and maybe one grenade launcher if it decides to spawn in the labs)"""
-    display_name = "Oops! Only Handgun"
+    display_name = "Oops! All Handguns"
     option_false = 0
     option_true = 1
     default = 0
@@ -186,49 +189,49 @@ class DamageTrapsCanKill(Choice):
     option_true = 1
     default = 0
     
-class AddParasiteTraps(Choice):
-    """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
-    These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
-    """
-    display_name = "Add Parasite Traps"
-    option_false = 0
-    option_true = 1
-    default = 0
+# class AddParasiteTraps(Choice):
+    # """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
+    # These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
+    # """
+    # display_name = "Add Parasite Traps"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
 
-class ParasiteTrapCount(NamedRange):
-    """While the "AddParasiteTraps" option is enabled, this option specifies how many of this trap should be placed.
-    """
-    default = 10
-    range_start = 0
-    range_end = 30 
-    display_name = "Parasite Trap Count"
-    special_range_names = {
-        "disabled": 0,
-        "half": 15,
-        "all": 30,
-    }
+# class ParasiteTrapCount(NamedRange):
+    # """While the "AddParasiteTraps" option is enabled, this option specifies how many of this trap should be placed.
+    # """
+    # default = 10
+    # range_start = 0
+    # range_end = 30 
+    # display_name = "Parasite Trap Count"
+    # special_range_names = {
+    #     "disabled": 0,
+    #     "half": 15,
+    #     "all": 30,
+    # }
     
-class AddPukeTraps(Choice):
-    """Enabling this adds traps to your game that, when received, will cause you to vomit. e.g., when you heal yourself from parasites. 
-    These traps are more of a nuisance than anything, but can be trolly if you're in the middle of combat.
-    """
-    display_name = "Add Puke Traps"
-    option_false = 0
-    option_true = 1
-    default = 0
+# class AddPukeTraps(Choice):
+    # """Enabling this adds traps to your game that, when received, will cause you to vomit. e.g., when you heal yourself from parasites. 
+    # These traps are more of a nuisance than anything, but can be trolly if you're in the middle of combat.
+    # """
+    # display_name = "Add Puke Traps"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
     
-class PukeTrapCount(NamedRange):
-    """While the "AddPukeTraps" option is enabled, this option specifies how many of this trap should be placed.
-    """
-    default = 10
-    range_start = 0
-    range_end = 30 
-    display_name = "Puke Trap Count"
-    special_range_names = {
-        "disabled": 0,
-        "half": 15,
-        "all": 30,
-    }
+# class PukeTrapCount(NamedRange):
+    # """While the "AddPukeTraps" option is enabled, this option specifies how many of this trap should be placed.
+    # """
+    # default = 10
+    # range_start = 0
+    # range_end = 30 
+    # display_name = "Puke Trap Count"
+    # special_range_names = {
+    #     "disabled": 0,
+    #     "half": 15,
+    #     "all": 30,
+    # }
 
 # making this mixin so we can keep actual game options separate from AP core options that we want enabled
 # not sure why this isn't a mixin in core atm, anyways
@@ -257,8 +260,8 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     add_damage_traps: AddDamageTraps
     damage_trap_count: DamageTrapCount
     damage_traps_can_kill: DamageTrapsCanKill
-    add_parasite_traps: AddParasiteTraps
-    parasite_trap_count: ParasiteTrapCount
-    add_puke_traps: AddPukeTraps
-    puke_trap_count: PukeTrapCount
+    # add_parasite_traps: AddParasiteTraps
+    # parasite_trap_count: ParasiteTrapCount
+    # add_puke_traps: AddPukeTraps
+    # puke_trap_count: PukeTrapCount
 
