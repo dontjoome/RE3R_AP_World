@@ -9,7 +9,6 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -29,7 +28,6 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -49,7 +47,6 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -69,7 +66,6 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -252,14 +248,13 @@
     {
         "name": "Inside Kitchen 1",
         "region": "Donut Shop",
-        "original_item": "Fancy Box - Red Jewel",
+        "original_item": "Green Herb",
         "condition": {},
-        "item_object": "sm73_313",
-        "parent_object": "sm73_313",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem",
+        "item_object": "sm70_051",
+        "parent_object": "sm70_051",
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_300_DounutShop_Area/_DounutShop_Inside",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -272,14 +267,13 @@
     {
         "name": "Inside Kitchen 2",
         "region": "Donut Shop",
-        "original_item": "Green Herb",
+        "original_item": "Fancy Box - Red Jewel",
         "condition": {},
-        "item_object": "sm70_051",
-        "parent_object": "sm70_051",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_300_DounutShop_Area/_DounutShop_Inside",
+        "item_object": "sm73_313",
+        "parent_object": "sm73_313",
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem",
         "allow_item": [
             "Fire Hose",
-            "Bolt Cutters",
             "Battery Pack",
             "Kendo Gate Key",
             "Locker Room Key",
@@ -441,16 +435,7 @@
         "item_object": "sm73_001",
         "parent_object": "sm73_001",
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem",
-        "allow_item": [
-            "Bolt Cutters",
-            "Battery Pack",
-            "Kendo Gate Key",
-            "Locker Room Key",
-            "Tape Player",
-            "Fuse 1",
-            "Fuse 2",
-            "Fuse 3"
-        ]
+        "randomized": 0
     },
     {
         "name": "Locker",
@@ -1013,8 +998,7 @@
         "condition": {},
         "item_object": "sm70_100",
         "parent_object": "sm70_100",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/I_RPD_Street",
-        "randomized": 0
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/I_RPD_Street"
     },
     {
         "name": "Case near RPD Garage",
@@ -1409,8 +1393,7 @@
         "condition": {},
         "item_object": "sm70_001",
         "parent_object": "sm70_001_Hokanko",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common",
-        "randomized": 0
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
     },
     {
         "name": "Towel Rack",
@@ -1962,7 +1945,7 @@
         "original_item": "Flash Grenade",
         "condition": {},
         "item_object": "WP6300",
-        "parent_object": "st04_0108_Wp6300_01",
+        "parent_object": "st04_0108_Wp6300_00",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
     },
     {
@@ -2028,174 +2011,6 @@
         "item_object": "sm70_000",
         "parent_object": "st04_0101_sm70_000_00",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0101"
-    },
-    {
-        "name": "Weapon Crate 1",
-        "region": "Hospital Lobby",
-        "original_item": "Detonator",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm73_406",
-        "parent_object": "sm73_406",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 2",
-        "region": "Hospital Lobby",
-        "original_item": "Handgun Ammo",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_100",
-        "parent_object": "sm70_100_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 3",
-        "region": "Hospital Lobby",
-        "original_item": "Assault Rifle Ammo",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_102",
-        "parent_object": "sm70_102_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 4",
-        "region": "Hospital Lobby",
-        "original_item": "First Aid Spray",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_000",
-        "parent_object": "sm70_000",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 5",
-        "region": "Hospital Lobby",
-        "original_item": "Assault Rifle Ammo",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_102",
-        "parent_object": "sm70_102_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 6",
-        "region": "Hospital Lobby",
-        "original_item": "Handgun Ammo",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_100",
-        "parent_object": "sm70_100_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Weapon Crate 7",
-        "region": "Hospital Lobby",
-        "original_item": "Handgun Ammo",
-        "condition": {
-            "items": [
-                "Vaccine Sample"
-            ]
-        },
-        "item_object": "sm70_100",
-        "parent_object": "sm70_100_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Cabinet 1",
-        "region": "Back Office",
-        "original_item": "Hip Pouch",
-        "condition": {},
-        "item_object": "sm74_200",
-        "parent_object": "sm74_200",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Cabinet 2",
-        "region": "Back Office",
-        "original_item": "Green Herb",
-        "condition": {},
-        "item_object": "sm70_001",
-        "parent_object": "sm70_001_gherb",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Munitions 1",
-        "region": "Back Office",
-        "original_item": "Flash Grenade",
-        "condition": {},
-        "item_object": "WP6300",
-        "parent_object": "WP6300_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Munitions 2",
-        "region": "Back Office",
-        "original_item": "Flash Grenade",
-        "condition": {},
-        "item_object": "WP6300",
-        "parent_object": "WP6300_00_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Munitions 3",
-        "region": "Back Office",
-        "original_item": "Hand Grenade",
-        "condition": {},
-        "item_object": "WP6200",
-        "parent_object": "WP6200_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Munitions 4",
-        "region": "Back Office",
-        "original_item": "Hand Grenade",
-        "condition": {},
-        "item_object": "WP6200",
-        "parent_object": "WP6200_00_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
-    },
-    {
-        "name": "Munitions 5",
-        "region": "Back Office",
-        "original_item": "Hand Grenade",
-        "condition": {},
-        "item_object": "WP6200",
-        "parent_object": "WP6200_00_02",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/RoujousenRepopItem",
-        "randomized": 0
     },
     {
         "name": "By Doors 1",
@@ -2421,10 +2236,10 @@
     {
         "name": "In Container by Fuse 1",
         "region": "Warehouse",
-        "original_item": "High-Grade Gunpowder",
+        "original_item": "Gunpowder",
         "condition": {},
-        "item_object": "sm70_206",
-        "parent_object": "st04_0403_01_sm70_206_00",
+        "item_object": "sm70_205",
+        "parent_object": "st04_0403_01_sm70_205_00",
         "folder_path": "RopewayContents/World/Location_Hospital2/LocationLevel_Hospital2/Item/common/ES_common/st04_0403_01"
     },
     {
@@ -2439,10 +2254,10 @@
     {
         "name": "In Container by Fuse 3",
         "region": "Warehouse",
-        "original_item": "Gunpowder",
+        "original_item": "High-Grade Gunpowder",
         "condition": {},
-        "item_object": "sm70_205",
-        "parent_object": "st04_0403_01_sm70_205_00",
+        "item_object": "sm70_206",
+        "parent_object": "st04_0403_01_sm70_206_00",
         "folder_path": "RopewayContents/World/Location_Hospital2/LocationLevel_Hospital2/Item/common/ES_common/st04_0403_01"
     },
     {
@@ -2564,16 +2379,16 @@
         "randomized": 0
     },
     {
-        "name": "On Cart 1",
+        "name": "On Box 1",
         "region": "Experiment Storage",
-        "original_item": "Shotgun Shells",
+        "original_item": "High-Grade Gunpowder",
         "condition": {},
-        "item_object": "sm70_101",
-        "parent_object": "sm70_101",
+        "item_object": "sm70_206",
+        "parent_object": "sm70_206_onlyUnlimited",
         "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
-        "name": "On Box",
+        "name": "On Box 2",
         "region": "Experiment Storage",
         "original_item": "Green Herb",
         "condition": {},
@@ -2582,7 +2397,7 @@
         "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
-        "name": "On Cart 2",
+        "name": "On Cart",
         "region": "Experiment Storage",
         "original_item": "Explosive A",
         "condition": {},
@@ -2758,7 +2573,8 @@
         "condition": {},
         "item_object": "sm70_108",
         "parent_object": "sm70_108_Acase",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/03_Room01"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/03_Room01",
+        "randomized": 0
     },
     {
         "name": "Amongst Waste 1",

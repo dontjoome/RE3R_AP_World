@@ -1,15 +1,15 @@
 [
     {
         "id": 1,
-        "name": "City Streets"
+        "name": "Downtown"
     },
 	{
         "id": 2,
-        "name": "Sewers"
+        "name": "Sewer"
     },
 	{
         "id": 3,
-        "name": "Raccoon Police Department"
+        "name": "RPD"
     },
 	{
         "id": 4,
@@ -21,6 +21,6 @@
     },
 	{
         "id": 6,
-        "name": "NEST 2"
+        "name": "NEST"
     }
 ]

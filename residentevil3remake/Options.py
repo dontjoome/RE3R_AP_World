@@ -49,6 +49,16 @@ class StartingHipPouches(Choice):
     option_backpack = 3
     default = 0
 
+# class InfinityGauntlet(Choice):
+    # """Some players just wanna have fun, so here you go.
+
+    # False: Normal, you will only have infinite weapons if you unlocked them.
+    # True: All of your weapons will have infinite ammo, Nemmy better watch out."""
+    # display_name = "Infinity Gauntlet"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
+
 class BonusStart(Choice):
     """Some players might want to start with a little help in the way of a few extra heal items and packs of ammo.
     This will give you grenades instead of ammo if Oops All Grenades option is set.
@@ -60,13 +70,13 @@ class BonusStart(Choice):
     option_true = 1
     default = 0
 
-class ExtraDowntownItems(Choice):
-    """Not getting Bolt Cutters or Fire Hose early can lead to some intense BK.
-    This option adds an extra set of these items so the odds of BK are lower.
+class EarlyFireHose(Choice):
+    """Receiving Fire Hose late can lead to some intense BK.
+    This option will place it early to lower the odds of BK.
 
-    False: Normal, only 1 set are in the item pool.
-    True: Now, 2 of each are in the item pool."""
-    display_name = "Extra Downtown Items"
+    False: Normal, will place it anywhere in the world and you may be waiting a bit to progress.
+    True: Will place it in Sphere 1 of the world, and should prevent lengthy BK."""
+    display_name = "Early Fire Hose"
     option_false = 0
     option_true = 1
     default = 0
@@ -82,34 +92,34 @@ class ExtraSewerItems(Choice):
     option_true = 1
     default = 0
 
-class ForbidProgressionDowntown(Choice):
+class AllowProgressionDowntown(Choice):
     """Accidentally skipping item locations early can lead to softlocking as certain story triggers make it impossible to backtrack. 
     This option seeks to avoid that by limiting item placements.
 
-    False: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
-    
-    True: (Default) Will place your items into locations that are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
+    False: (Default) Will place items so they are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
     This severely limits where progression can be to prevent softlocking of any kind. Will also remove progression for others if multiworld.
+    
+    True: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
 
     NOTE - This option only affects *YOUR* Downtown. Your progression can still be in someone else's if they have this option enabled."""
-    display_name = "Forbid Progression Downtown"
+    display_name = "Allow Progression Downtown"
     option_false = 0
     option_true = 1
-    default = 1
+    default = 0
     
-class ForbidProgressionInLabs(Choice):
+class AllowProgressionInLabs(Choice):
     """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
     This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
 
-    False: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
+    False: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
 
-    True: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
+    True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
     NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
-    display_name = "Forbid Progression in Labs"
+    display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
-    default = 1
+    default = 0
 	
 class OopsAllGrenades(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
@@ -246,11 +256,12 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     difficulty: Difficulty
     unlocked_typewriters: UnlockedTypewriters
     starting_hip_pouches: StartingHipPouches
+    # infinity_gauntlet: InfinityGauntlet
     bonus_start: BonusStart
-    extra_downtown_items: ExtraDowntownItems
+    early_fire_hose: EarlyFireHose
     extra_sewer_items: ExtraSewerItems
-    forbid_progression_downtown: ForbidProgressionDowntown
-    forbid_progression_in_labs: ForbidProgressionInLabs
+    allow_progression_downtown: AllowProgressionDowntown
+    allow_progression_in_labs: AllowProgressionInLabs
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray

@@ -72,6 +72,15 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_600_ControlStation_Area/I_ControlRoom"
     },
     {
+        "name": "Right Locker",
+        "region": "Subway Office",
+        "original_item": "High-Grade Gunpowder",
+        "condition": {},
+        "item_object": "sm70_206",
+        "parent_object": "sm70_205_gunp_In_Locker",
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_600_ControlStation_Area/I_ControlRoom"
+    },
+    {
         "name": "On Barrel 2",
         "region": "Side Alley",
         "original_item": "Fancy Box - Blue Jewel",
@@ -123,12 +132,22 @@
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem"
     },
     {
+        "name": "Final Fight 10",
+        "region": "Weapons Testing Area",
+        "original_item": "Handgun Ammo",
+        "condition": {},
+        "item_object": "sm70_100",
+        "parent_object": "sm70_100_SHard",
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/04_Room02"
+    },
+
+    {
         "name": "Counter by Door",
         "region": "Supermarket",
         "remove": true
     },
     {
-        "name": "Inside Kitchen 1",
+        "name": "Inside Kitchen 2",
         "region": "Donut Shop",
         "remove": true
     },
@@ -138,7 +157,7 @@
         "remove": true
     },
     {
-        "name": "Brad's Corpse'",
+        "name": "Brad's Corpse",
         "region": "RPD Entrance",
         "remove": true
     },
@@ -155,21 +174,6 @@
     {
         "name": "Cart 8",
         "region": "Operating Room",
-        "remove": true
-    },
-    {
-        "name": "Weapon Crate 7",
-        "region": "Hospital Lobby",
-        "remove": true
-    },
-    {
-        "name": "Munitions 4",
-        "region": "Back Office",
-        "remove": true
-    },
-    {
-        "name": "Munitions 5",
-        "region": "Back Office",
         "remove": true
     }
 ]

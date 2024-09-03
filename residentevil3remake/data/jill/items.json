@@ -498,6 +498,13 @@
     "count": 3,
     "progression": 0
   },
+  {
+    "type": "Ammo",
+    "name": "Infinity Gauntlet",
+    "decimal": "",
+    "count": 1,
+    "progression": 0
+  },
 
   {
     "type": "Trap",
