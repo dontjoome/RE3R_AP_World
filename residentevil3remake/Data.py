@@ -25,9 +25,13 @@ class Data:
     def load_data(character, scenario):
         character_offsets = { 'jill': 0 }        
         scenario_offsets = { 'a': 0 }
-        hardcore_offset = 400 # put all hardcore-only locations in the last 100 location spots for each scenario
+        hardcore_offset = 400 # put all hardcore-only locations after standard location spots
+        nightmare_offset = 600 # put all nightmare-only locations after hardcore location spots
+        inferno_offset = 800 # put all inferno-only locations in the last 100 location spots
         scenario_suffix = ' ({}{})'.format(character[0].upper(), scenario.upper())
         scenario_suffix_hardcore = ' ({}{}H)'.format(character[0].upper(), scenario.upper()) # makes hardcore location variations unique
+        scenario_suffix_nightmare = ' ({}{}N)'.format(character[0].upper(), scenario.upper()) # makes nightmare location variations unique
+        scenario_suffix_inferno = ' ({}{}I)'.format(character[0].upper(), scenario.upper()) # makes inferno location variations unique
 
         location_start = item_start = 3300000000 + character_offsets[character] + scenario_offsets[scenario]
 
@@ -63,6 +67,42 @@ class Data:
                 }
                 for reg in hardcore_regions # instead of using region definitions, we're using the hardcore region additions from the locations themselves
             ])
+            
+        ###
+        # Add nightmare regions, if applicable
+        ###
+
+        nightmare_locations_table = load_data_file(character, scenario, 'locations_nightmare.json')
+        nightmare_regions = [loc['region'] for loc in nightmare_locations_table]
+
+        if len(nightmare_regions) > 0:
+            Data.region_table.extend([
+                {
+                    'name': reg + scenario_suffix_nightmare, # add the scenario abbreviation so they're unique
+                    'character': character,
+                    'scenario': scenario,
+                    'zone_id': [regular['zone_id'] for regular in new_region_table if regular['name'] == reg][0]
+                }
+                for reg in nightmare_regions # instead of using region definitions, we're using the nightmare region additions from the locations themselves
+            ])
+
+        ###
+        # Add inferno regions, if applicable
+        ###
+
+        inferno_locations_table = load_data_file(character, scenario, 'locations_inferno.json')
+        inferno_regions = [loc['region'] for loc in inferno_locations_table]
+
+        if len(inferno_regions) > 0:
+            Data.region_table.extend([
+                {
+                    'name': reg + scenario_suffix_inferno, # add the scenario abbreviation so they're unique
+                    'character': character,
+                    'scenario': scenario,
+                    'zone_id': [regular['zone_id'] for regular in new_region_table if regular['name'] == reg][0]
+                }
+                for reg in inferno_regions # instead of using region definitions, we're using the inferno region additions from the locations themselves
+            ])
 
         ###
         # Add standard region connections
@@ -90,6 +130,48 @@ class Data:
                 if conn['from'] in hardcore_regions or conn['to'] in hardcore_regions:
                     suffix_from = scenario_suffix_hardcore if conn['from'] in hardcore_regions else scenario_suffix
                     suffix_to = scenario_suffix_hardcore if conn['to'] in hardcore_regions else scenario_suffix
+
+                    new_region_connection = {
+                        **conn,
+                        'from': conn['from'] + suffix_from, 
+                        'to': conn['to'] + suffix_to, 
+                        'character': character,
+                        'scenario': scenario    
+                    }
+
+                    Data.region_connections_table.append(new_region_connection)
+                    
+        ###
+        # Add nightmare region connections
+        ###
+
+        # not a typo. if we loaded nightmare regions, we need to generate nightmare region connections as well
+        if len(nightmare_regions) > 0:
+            for conn in new_region_connections_table:
+                if conn['from'] in nightmare_regions or conn['to'] in nightmare_regions:
+                    suffix_from = scenario_suffix_nightmare if conn['from'] in nightmare_regions else scenario_suffix
+                    suffix_to = scenario_suffix_nightmare if conn['to'] in nightmare_regions else scenario_suffix
+
+                    new_region_connection = {
+                        **conn,
+                        'from': conn['from'] + suffix_from, 
+                        'to': conn['to'] + suffix_to, 
+                        'character': character,
+                        'scenario': scenario    
+                    }
+
+                    Data.region_connections_table.append(new_region_connection)
+        
+        ###
+        # Add inferno region connections
+        ###
+
+        # not a typo. if we loaded inferno regions, we need to generate inferno region connections as well
+        if len(inferno_regions) > 0:
+            for conn in new_region_connections_table:
+                if conn['from'] in inferno_regions or conn['to'] in inferno_regions:
+                    suffix_from = scenario_suffix_inferno if conn['from'] in inferno_regions else scenario_suffix
+                    suffix_to = scenario_suffix_inferno if conn['to'] in inferno_regions else scenario_suffix
 
                     new_region_connection = {
                         **conn,
@@ -161,4 +243,42 @@ class Data:
                     'difficulty': 'hardcore'
                 }
                 for key, loc in enumerate(hardcore_location_table)
+            ])
+            
+        ###
+        # Add nightmare locations
+        ###
+
+        nightmare_location_table = load_data_file(character, scenario, 'locations_nightmare.json')
+
+        if len(nightmare_location_table) > 0:
+            Data.location_table.extend([
+                { 
+                    **loc, 
+                    'id': loc['id'] if loc.get('id') else location_start + key + nightmare_offset,
+                    'region': loc['region'] + scenario_suffix_nightmare, # add the scenario abbreviation so they're unique
+                    'character': character,
+                    'scenario': scenario,
+                    'difficulty': 'nightmare'
+                }
+                for key, loc in enumerate(nightmare_location_table)
+            ])
+
+        ###
+        # Add inferno locations
+        ###
+
+        inferno_location_table = load_data_file(character, scenario, 'locations_inferno.json')
+
+        if len(inferno_location_table) > 0:
+            Data.location_table.extend([
+                { 
+                    **loc, 
+                    'id': loc['id'] if loc.get('id') else location_start + key + inferno_offset,
+                    'region': loc['region'] + scenario_suffix_inferno, # add the scenario abbreviation so they're unique
+                    'character': character,
+                    'scenario': scenario,
+                    'difficulty': 'inferno'
+                }
+                for key, loc in enumerate(inferno_location_table)
             ])

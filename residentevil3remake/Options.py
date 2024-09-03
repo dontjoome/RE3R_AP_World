@@ -19,10 +19,14 @@ class Scenario(Choice):
 
 class Difficulty(Choice):
     """Standard: Most people should play on this.
-    Hardcore: Good luck, and thanks for testing deaths. Kappa"""
+    Hardcore: Slightly tougher, but not by much. 
+    Nightmare: It actually rains zombies, Kappa
+    Inferno: Hope your name isn't Gohan, because you need to dodge... a lot"""
     display_name = "Difficulty to Play On"
     option_standard = 0
     option_hardcore = 1
+    option_nightmare = 2
+    option_inferno = 3
     default = 0
 
 class UnlockedTypewriters(OptionList):
@@ -30,19 +34,30 @@ class UnlockedTypewriters(OptionList):
     """
     display_name = "Unlocked Typewriters"
 
-class StartingHipPouches(NamedRange):
+class StartingHipPouches(Choice):
     """The number of hip pouches you want to start the game with, to a max of 3. 
-    Any that you start with are taken out of the item pool and replaced with junk."""
-    default = 0
-    range_start = 0
-    range_end = 3
+    Any that you start with are taken out of the item pool and replaced with junk.
+    
+    Pockets: Equivalent of zero starting hip pouches. 
+    Fanny pack: Equivalent of one starting hip pouch. 
+    Purse: Equivalent of two starting hip pouches.
+    Backpack: Equivalent of three starting hip pouches."""
     display_name = "Starting Hip Pouches"
-    special_range_names = {
-        "pockets": 0,
-        "fanny pack": 1,
-        "purse": 2,
-        "backpack": 3
-    }
+    option_pockets = 0
+    option_fanny_pack = 1
+    option_purse = 2
+    option_backpack = 3
+    default = 0
+
+# class InfinityGauntlet(Choice):
+    # """Some players just wanna have fun, so here you go.
+
+    # False: Normal, you will only have infinite weapons if you unlocked them.
+    # True: All of your weapons will have infinite ammo, Nemmy better watch out."""
+    # display_name = "Infinity Gauntlet"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
 
 class BonusStart(Choice):
     """Some players might want to start with a little help in the way of a few extra heal items and packs of ammo.
@@ -55,13 +70,13 @@ class BonusStart(Choice):
     option_true = 1
     default = 0
 
-class ExtraDowntownItems(Choice):
-    """Not getting Bolt Cutters or Fire Hose early can lead to some intense BK.
-    This option adds an extra set of these items so the odds of BK are lower.
+class EarlyFireHose(Choice):
+    """Receiving Fire Hose late can lead to some intense BK.
+    This option will place it early to lower the odds of BK.
 
-    False: Normal, only 1 set are in the item pool.
-    True: Now, 2 of each are in the item pool."""
-    display_name = "Extra Downtown Items"
+    False: Normal, will place it anywhere in the world and you may be waiting a bit to progress.
+    True: Will place it in Sphere 1 of the world, and should prevent lengthy BK."""
+    display_name = "Early Fire Hose"
     option_false = 0
     option_true = 1
     default = 0
@@ -77,34 +92,34 @@ class ExtraSewerItems(Choice):
     option_true = 1
     default = 0
 
-class ForbidProgressionDowntown(Choice):
+class AllowProgressionDowntown(Choice):
     """Accidentally skipping item locations early can lead to softlocking as certain story triggers make it impossible to backtrack. 
     This option seeks to avoid that by limiting item placements.
 
-    False: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
-    
-    True: (Default) Will place your items into locations that are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
+    False: (Default) Will place items so they are not permanently missable after fighting Nemesis on the Demolition Site Rooftop.
     This severely limits where progression can be to prevent softlocking of any kind. Will also remove progression for others if multiworld.
+    
+    True: Progression can be placed Downtown in locations that can be missed if story progresses too far, you've been warned.
 
     NOTE - This option only affects *YOUR* Downtown. Your progression can still be in someone else's if they have this option enabled."""
-    display_name = "Forbid Progression Downtown"
+    display_name = "Allow Progression Downtown"
     option_false = 0
     option_true = 1
-    default = 1
+    default = 0
     
-class ForbidProgressionInLabs(Choice):
+class AllowProgressionInLabs(Choice):
     """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
     This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
 
-    False: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
+    False: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
 
-    True: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
+    True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
     NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
     display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
-    default = 1
+    default = 0
 	
 class OopsAllGrenades(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
@@ -117,7 +132,7 @@ class OopsAllGrenades(Choice):
 class OopsAllHandguns(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Handgun Ammo. 
     (Except your starting weapon, the shotgun, and maybe one grenade launcher if it decides to spawn in the labs)"""
-    display_name = "Oops! Only Handgun"
+    display_name = "Oops! All Handguns"
     option_false = 0
     option_true = 1
     default = 0
@@ -183,6 +198,50 @@ class DamageTrapsCanKill(Choice):
     option_false = 0
     option_true = 1
     default = 0
+    
+# class AddParasiteTraps(Choice):
+    # """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
+    # These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
+    # """
+    # display_name = "Add Parasite Traps"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
+
+# class ParasiteTrapCount(NamedRange):
+    # """While the "AddParasiteTraps" option is enabled, this option specifies how many of this trap should be placed.
+    # """
+    # default = 10
+    # range_start = 0
+    # range_end = 30 
+    # display_name = "Parasite Trap Count"
+    # special_range_names = {
+    #     "disabled": 0,
+    #     "half": 15,
+    #     "all": 30,
+    # }
+    
+# class AddPukeTraps(Choice):
+    # """Enabling this adds traps to your game that, when received, will cause you to vomit. e.g., when you heal yourself from parasites. 
+    # These traps are more of a nuisance than anything, but can be trolly if you're in the middle of combat.
+    # """
+    # display_name = "Add Puke Traps"
+    # option_false = 0
+    # option_true = 1
+    # default = 0
+    
+# class PukeTrapCount(NamedRange):
+    # """While the "AddPukeTraps" option is enabled, this option specifies how many of this trap should be placed.
+    # """
+    # default = 10
+    # range_start = 0
+    # range_end = 30 
+    # display_name = "Puke Trap Count"
+    # special_range_names = {
+    #     "disabled": 0,
+    #     "half": 15,
+    #     "all": 30,
+    # }
 
 # making this mixin so we can keep actual game options separate from AP core options that we want enabled
 # not sure why this isn't a mixin in core atm, anyways
@@ -197,11 +256,12 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     difficulty: Difficulty
     unlocked_typewriters: UnlockedTypewriters
     starting_hip_pouches: StartingHipPouches
+    # infinity_gauntlet: InfinityGauntlet
     bonus_start: BonusStart
-    extra_downtown_items: ExtraDowntownItems
+    early_fire_hose: EarlyFireHose
     extra_sewer_items: ExtraSewerItems
-    forbid_progression_downtown: ForbidProgressionDowntown
-    forbid_progression_in_labs: ForbidProgressionInLabs
+    allow_progression_downtown: AllowProgressionDowntown
+    allow_progression_in_labs: AllowProgressionInLabs
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray
@@ -211,4 +271,8 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     add_damage_traps: AddDamageTraps
     damage_trap_count: DamageTrapCount
     damage_traps_can_kill: DamageTrapsCanKill
+    # add_parasite_traps: AddParasiteTraps
+    # parasite_trap_count: ParasiteTrapCount
+    # add_puke_traps: AddPukeTraps
+    # puke_trap_count: PukeTrapCount
 

@@ -26,7 +26,7 @@ class RE3RLocation(Location):
         return RE3RLocation.stack_names(*area_names)
 
     def is_item_allowed(item, location_data, current_item_rule):
-        return current_item_rule and ('allow_item' not in location_data or item.name in location_data['allow_item'])
+        return current_item_rule and ('allow_item' not in location_data or item.name not in location_data['allow_item'])
 
 
 class ResidentEvil3Remake(World):
@@ -68,9 +68,15 @@ class ResidentEvil3Remake(World):
         regions = [
             Region(region['name'], self.player, self.multiworld) 
                 for region in scenario_regions
-        ]
-        
+]
+        added_regions = []
+
         for region in regions:
+            if region.name in added_regions:
+             print("Skipping duplicate region {}...".format(region.name))
+             continue
+
+            added_regions.append(region.name)
             region.locations = [
                 RE3RLocation(self.player, RE3RLocation.stack_names_not_victory(region.name, location['name']), location['id'], region) 
                     for _, location in scenario_locations.items() if location['region'] == region.name
@@ -90,10 +96,10 @@ class ResidentEvil3Remake(World):
                 # if location is not force_item'd or not not randomized, check for Downtown progression option and apply
                 # since Downtown progression option doesn't matter for force_item'd or not randomized locations
                 # we check for zone id 1 because Downtown; Sewers and beyond is able to be gotten again minus a few locations.
-                elif self._format_option_text(self.options.forbid_progression_downtown) == 'true' and region_data['zone_id'] == 1:
+                elif self._format_option_text(self.options.allow_progression_downtown) == 'False' and region_data['zone_id'] == 1:
                     location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
                 # we check for zone id 6 because Labs; progression being here is just a feelsbad.    
-                elif self._format_option_text(self.options.forbid_progression_in_labs) == 'true' and region_data['zone_id'] == 6:
+                elif self._format_option_text(self.options.allow_progression_in_labs) == 'False' and region_data['zone_id'] == 6:
                     location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
                 # END
 
@@ -167,6 +173,10 @@ class ResidentEvil3Remake(World):
                 self.multiworld.push_precollected(hip_pouches[x]) # starting inv
                 pool.remove(hip_pouches[x])
 
+        # check infinity gauntlet option and precollect if true 
+        # if self._format_option_text(self.options.infinity_gauntlet) == 'True':
+            # for x in range(1): self.multiworld.push_precollected(self.create_item('Infinity Gauntlet'))
+
         # check the bonus start option and add some heal items and ammo packs as precollected / starting items
         if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'True':
             for x in range(3): self.multiworld.push_precollected(self.create_item('First Aid Spray'))
@@ -190,7 +200,7 @@ class ResidentEvil3Remake(World):
             replaceables = set(item.name for item in pool if 'Gunpowder' in item.name or 'Explosive' in item.name)
             less_useful_items = set(
                 item.name for item in pool 
-                    if 'Flash Grenade' in item.name or 'Herb' in item.name
+                    if item.name == 'Flash Grenade' or 'Herb' in item.name
             )
 
             for from_item in replaceables:
@@ -204,6 +214,15 @@ class ResidentEvil3Remake(World):
         if self._format_option_text(self.options.add_damage_traps) == 'True':
             for x in range(int(self.options.damage_trap_count)):
                 traps.append(self.create_item("Damage Trap"))
+                
+        # if self._format_option_text(self.options.add_parasite_traps) == 'True':
+            # for x in range(int(self.options.parasite_trap_count)):
+                # traps.append(self.create_item("Parasite Trap"))
+                
+        # if self._format_option_text(self.options.add_puke_traps) == 'True':
+            # for x in range(int(self.options.puke_trap_count)):
+                # traps.append(self.create_item("Puke Trap"))
+                
         if len(traps) > 0:
             # use these spots for replacement first, since they're entirely non-essential
             available_spots = [
@@ -233,16 +252,15 @@ class ResidentEvil3Remake(World):
                 pool.remove(spot)
                 pool.append(trap_to_place)
 				
-		# add extras for Downtown items or Sewer Stuff, if configured
+	# Add option for early/extras for Downtown items or Sewer Stuff, if configured
         # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
-        if self._format_option_text(self.options.extra_downtown_items) == 'True':
-            replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
-            
-            for x in range(2):
-                pool.remove(replaceables[x])
+        if self._format_option_text(self.options.early_fire_hose) == 'True':
+            early_items = {}  
+            early_items["Fire Hose"] = len([i for i in pool if i.name == "Fire Hose"])     
 
-            pool.append(self.create_item('Fire Hose'))
-            pool.append(self.create_item('Bolt Cutters'))
+            for item_name, item_qty in early_items.items():
+                if item_qty > 0:
+                    self.multiworld.early_items[self.player][item_name] = item_qty
 
         if self._format_option_text(self.options.extra_sewer_items) == 'True':
             replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
@@ -348,26 +366,53 @@ class ResidentEvil3Remake(World):
             loc['id']: loc for _, loc in self.location_name_to_location.items()
                 if loc['character'] == character and loc['scenario'] == scenario
         }
+        
+        if self._format_option_text(self.options.difficulty) == 'Inferno':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare'}
 
-        # if the player chose hardcore, take out any matching standard difficulty locations
-        if self._format_option_text(self.options.difficulty) == 'Hardcore':
+            for inferno_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'inferno']:
+                check_loc_region = re.sub('I\)$', ')', inferno_loc['region']) # take the Inferno off the region name
+                check_loc_name = inferno_loc['name']
+
+                # if there's a location with matching name and region, remove it
+                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'inferno']
+
+                if len(matching_locs) > 0:
+                    del locations_pool[matching_locs[0]]
+
+        elif self._format_option_text(self.options.difficulty) == 'Nightmare':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'inferno'}
+
+            for nightmare_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'nightmare']:
+                check_loc_region = re.sub('N\)$', ')', nightmare_loc['region']) # take the Nightmare off the region name
+                check_loc_name = nightmare_loc['name']
+
+                # if there's a location with matching name and region, remove it
+                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'nightmare']
+
+                if len(matching_locs) > 0:
+                    del locations_pool[matching_locs[0]]
+                        
+        elif self._format_option_text(self.options.difficulty) == 'Hardcore':
+            locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'nightmare' and loc['difficulty'] != 'inferno'}
+
             for hardcore_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'hardcore']:
                 check_loc_region = re.sub('H\)$', ')', hardcore_loc['region']) # take the Hardcore off the region name
                 check_loc_name = hardcore_loc['name']
 
-                # if there's a standard location with matching name and region, it's obsoleted in hardcore, remove it
-                standard_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'hardcore']
+                # if there's a location with matching name and region, remove it
+                matching_locs = [id for id, loc in locations_pool.items() if loc['region'] == check_loc_region and loc['name'] == check_loc_name and loc['difficulty'] != 'hardcore']
 
-                if len(standard_locs) > 0:
-                    del locations_pool[standard_locs[0]]
+                if len(matching_locs) > 0:
+                    del locations_pool[matching_locs[0]]
 
-        # else, the player is still playing standard, take out all of the matching hardcore difficulty locations
+        # else, the player is still playing standard, take out all of the matching difficulty locations
         else:
             locations_pool = {
-                id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore'
+                id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare' and loc['difficulty'] != 'inferno'
             }
-
-        # now that we've factored in hardcore swaps, remove any hardcore locations that were just there for removing unused standard ones
+     
+        # now that we've factored in swaps, remove any locations that were just there for removing unused standard ones
         locations_pool = { id: loc for id, loc in locations_pool.items() if 'remove' not in loc }
         
         return locations_pool
