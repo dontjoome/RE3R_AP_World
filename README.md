@@ -5,7 +5,8 @@ An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for us
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
 ## What scenario/difficulty does this support?
-Standard and Hardcore, for now. Planned to include Nightmare/Inferno eventually.
+Standard/Hardcore/Nightmare/Inferno are all supported.
+Just don't play on Assisted and you'll be fine. 
 
 ## How is the scenarios data structured?
 All of the scenarios' data lives in the `data` folder. The structure of the data is:
@@ -93,9 +94,19 @@ There must be exactly one Victory location (i.e., location that finishes the ran
 ---
 
 #### Locations (Hardcore) file
-This file is optional, but needed for Hardcore difficulty support for scenarios. The only difference between Hardcore difficulty and other difficulties is the placement of ink ribbons, both in locations that are used by other difficulties and in new locations.
+This file is optional, but needed for Hardcore difficulty support for scenarios. Hardcore difficulty just removes some locations from the game, and beefs up the damage you take a little bit.
 
-This file only contains locations that are changed/added for Hardcore, and is loaded after the normal locations file. If a location in the Hardcore file has the same region name and location name as a location in the normal file, the location in the normal file will be overwritten when playing Hardcore difficulty. If the location in the Hardcore file has a region + location name that doesn't match an existing location, it will be added as a new location when playing Hardcore difficulty.
+This file only contains locations that are changed/added for Hardcore, and is loaded after the normal locations file. If a location in the Hardcore file has the same region name and location name as a location in the normal file, the location in the normal file will be overwritten when playing Hardcore difficulty. If the location in the Hardcore file has a region + location name that doesn't match an existing location, it will be added as a new location when playing Hardcore difficulty i.e. (JAH) will be appended to the name
+
+#### Locations (Nightmare) file
+This file is optional, but needed for Nightmare difficulty support for scenarios. Nightmare difficult removes some locations, but also changes the layout of other items as well.
+
+This file only contains locations that are changed/added for Nightmare, and is loaded after the normal locations file. If a location in the Nightmare file has the same region name and location name as a location in the normal file, the location in the normal file will be overwritten when playing Nightmare difficulty. If the location in the Nightmare file has a region + location name that doesn't match an existing location, it will be added as a new location when playing Nightmare difficulty i.e. (JAN) will be appended to the name
+
+#### Locations (Inferno) file
+This file is optional, but needed for Hardcore difficulty support for scenarios. Inferno has the same item placements as Nightmare, removes some typewriters and item boxes as well as quite a few item locations. 
+
+This file only contains locations that are changed/added for Inferno, and is loaded after the normal locations file. If a location in the Inferno file has the same region name and location name as a location in the normal file, the location in the normal file will be overwritten when playing Inferno difficulty. If the location in the Inferno file has a region + location name that doesn't match an existing location, it will be added as a new location when playing Inferno difficulty i.e. (JAI) will be appended to the name
 
 ---
 
