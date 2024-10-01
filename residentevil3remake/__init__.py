@@ -37,7 +37,7 @@ class ResidentEvil3Remake(World):
 
     data_version = 2
     required_client_version = (0, 5, 0)
-    apworld_release_version = "0.1.5" # defined to show in spoiler log
+    apworld_release_version = "0.1.6" # defined to show in spoiler log
 
     item_id_to_name = { item['id']: item['name'] for item in Data.item_table }
     item_name_to_id = { item['name']: item['id'] for item in Data.item_table }
@@ -93,15 +93,12 @@ class ResidentEvil3Remake(World):
                 # if/elif here allows force_item + randomized=0, since a forced item is technically not randomized, but don't need to trigger both.
                 elif 'randomized' in location_data and location_data['randomized'] == 0:
                     location.place_locked_item(self.create_item(location_data["original_item"]))
-                # if location is not force_item'd or not not randomized, check for Downtown progression option and apply
-                # since Downtown progression option doesn't matter for force_item'd or not randomized locations
-                # we check for zone id 1 because Downtown; Sewers and beyond is able to be gotten again minus a few locations.
-                elif self._format_option_text(self.options.allow_progression_downtown) == 'False' and region_data['zone_id'] == 1:
-                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
-                # we check for zone id 6 because Labs; progression being here is just a feelsbad.    
-                elif self._format_option_text(self.options.allow_progression_in_labs) == 'False' and region_data['zone_id'] == 6:
-                    location.item_rule = lambda item: item.classification != ItemClassification.progression and item.classification != ItemClassification.progression_skip_balancing
-                # END
+                # if location is not force_item'd or not not randomized, check for missable location option
+                # since  doesn't matter for force_item'd or not randomized locations
+                # These options severely limits where items can be..
+                elif self._format_option_text(self.options.allow_missable_locations) == 'False' and region_data['zone_id'] != 6:
+                    location.item_rule = lambda item: not item.advancement
+		# END
 
                 if 'allow_item' in location_data and location_data['allow_item']:
                     current_item_rule = location.item_rule or None
@@ -172,10 +169,6 @@ class ResidentEvil3Remake(World):
             for x in range(starting_hip_pouches):
                 self.multiworld.push_precollected(hip_pouches[x]) # starting inv
                 pool.remove(hip_pouches[x])
-
-        # check infinity gauntlet option and precollect if true 
-        # if self._format_option_text(self.options.infinity_gauntlet) == 'True':
-            # for x in range(1): self.multiworld.push_precollected(self.create_item('Infinity Gauntlet'))
 
         # check the bonus start option and add some heal items and ammo packs as precollected / starting items
         if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'True':
@@ -359,7 +352,7 @@ class ResidentEvil3Remake(World):
             return True
 
     def _format_option_text(self, option) -> str:
-        return re.sub('\w+\(', '', str(option)).rstrip(')')
+        return re.sub(r'\w+\(', '', str(option)).rstrip(')')
     
     def _get_locations_for_scenario(self, character, scenario) -> dict:
         locations_pool = {
@@ -371,7 +364,7 @@ class ResidentEvil3Remake(World):
             locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'nightmare'}
 
             for inferno_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'inferno']:
-                check_loc_region = re.sub('I\)$', ')', inferno_loc['region']) # take the Inferno off the region name
+                check_loc_region = re.sub(r'I\)$', ')', inferno_loc['region']) # take the Inferno off the region name
                 check_loc_name = inferno_loc['name']
 
                 # if there's a location with matching name and region, remove it
@@ -384,7 +377,7 @@ class ResidentEvil3Remake(World):
             locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'hardcore' and loc['difficulty'] != 'inferno'}
 
             for nightmare_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'nightmare']:
-                check_loc_region = re.sub('N\)$', ')', nightmare_loc['region']) # take the Nightmare off the region name
+                check_loc_region = re.sub(r'N\)$', ')', nightmare_loc['region']) # take the Nightmare off the region name
                 check_loc_name = nightmare_loc['name']
 
                 # if there's a location with matching name and region, remove it
@@ -397,7 +390,7 @@ class ResidentEvil3Remake(World):
             locations_pool = { id: loc for id, loc in locations_pool.items() if loc['difficulty'] != 'nightmare' and loc['difficulty'] != 'inferno'}
 
             for hardcore_loc in [loc for loc in locations_pool.values() if loc['difficulty'] == 'hardcore']:
-                check_loc_region = re.sub('H\)$', ')', hardcore_loc['region']) # take the Hardcore off the region name
+                check_loc_region = re.sub(r'H\)$', ')', hardcore_loc['region']) # take the Hardcore off the region name
                 check_loc_name = hardcore_loc['name']
 
                 # if there's a location with matching name and region, remove it
