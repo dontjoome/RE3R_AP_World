@@ -49,16 +49,6 @@ class StartingHipPouches(Choice):
     option_backpack = 3
     default = 0
 
-# class InfinityGauntlet(Choice):
-    # """Some players just wanna have fun, so here you go.
-
-    # False: Normal, you will only have infinite weapons if you unlocked them.
-    # True: All of your weapons will have infinite ammo, Nemmy better watch out."""
-    # display_name = "Infinity Gauntlet"
-    # option_false = 0
-    # option_true = 1
-    # default = 0
-
 class BonusStart(Choice):
     """Some players might want to start with a little help in the way of a few extra heal items and packs of ammo.
     This will give you grenades instead of ammo if Oops All Grenades option is set.
@@ -104,6 +94,20 @@ class AllowMissableLocations(Choice):
 
     NOTE - This option only affects *YOUR* game. Your progression can still be in someone else's if they have this option enabled."""
     display_name = "Allow Missable Locations"
+    option_false = 0
+    option_true = 1
+    default = 0
+    
+class AllowProgressionInLabs(Choice):
+    """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
+    This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
+
+    False: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
+
+    True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
+
+    NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
+    display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
     default = 0
@@ -243,11 +247,11 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     difficulty: Difficulty
     unlocked_typewriters: UnlockedTypewriters
     starting_hip_pouches: StartingHipPouches
-    # infinity_gauntlet: InfinityGauntlet
     bonus_start: BonusStart
     early_fire_hose: EarlyFireHose
     extra_sewer_items: ExtraSewerItems
     allow_missable_locations: AllowMissableLocations
+    allow_progression_in_labs: AllowProgressionInLabs
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray

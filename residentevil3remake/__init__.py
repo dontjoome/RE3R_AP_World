@@ -98,6 +98,8 @@ class ResidentEvil3Remake(World):
                 # These options severely limits where items can be..
                 elif self._format_option_text(self.options.allow_missable_locations) == 'False' and region_data['zone_id'] != 6:
                     location.item_rule = lambda item: not item.advancement
+                elif self._format_option_text(self.options.allow_progression_in_labs) == 'False' and region_data['zone_id'] == 6:
+                    location.item_rule = lambda item: not item.advancement
 		# END
 
                 if 'allow_item' in location_data and location_data['allow_item']:
