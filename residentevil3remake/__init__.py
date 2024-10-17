@@ -108,7 +108,7 @@ class ResidentEvil3Remake(World):
                     if not current_item_rule:
                         current_item_rule = lambda x: True
 
-                    location.item_rule = lambda item: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
+                    location.item_rule = lambda item, location_data=location_data: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
 
                 # now, set rules for the location access
                 if "condition" in location_data and "items" in location_data["condition"]:
