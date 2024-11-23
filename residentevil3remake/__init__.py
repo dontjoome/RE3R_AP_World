@@ -73,8 +73,7 @@ class ResidentEvil3Remake(World):
 
         for region in regions:
             if region.name in added_regions:
-             print("Skipping duplicate region {}...".format(region.name))
-             continue
+                continue
 
             added_regions.append(region.name)
             region.locations = [
