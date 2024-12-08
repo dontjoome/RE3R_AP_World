@@ -26,7 +26,7 @@ class RE3RLocation(Location):
         return RE3RLocation.stack_names(*area_names)
 
     def is_item_allowed(item, location_data, current_item_rule):
-        return current_item_rule and ('allow_item' not in location_data or item.name not in location_data['allow_item'])
+        return current_item_rule and ('allow_item' not in location_data or item.name in location_data['allow_item'])
 
 
 class ResidentEvil3Remake(World):
