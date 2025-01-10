@@ -73,7 +73,7 @@ class ResidentEvil3Remake(World):
 
         for region in regions:
             if region.name in added_regions:
-                continue
+             continue
 
             added_regions.append(region.name)
             region.locations = [
@@ -107,7 +107,7 @@ class ResidentEvil3Remake(World):
                     if not current_item_rule:
                         current_item_rule = lambda x: True
 
-                    location.item_rule = lambda item, location_data=location_data: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
+                    location.item_rule = lambda item: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
 
                 # now, set rules for the location access
                 if "condition" in location_data and "items" in location_data["condition"]:
@@ -245,7 +245,14 @@ class ResidentEvil3Remake(World):
                 trap_to_place = traps.pop()
                 pool.remove(spot)
                 pool.append(trap_to_place)
-				
+	
+        early_items = {}  
+        early_items["ID Card"] = len([i for i in pool if i.name == "ID Card"])     
+
+        for item_name, item_qty in early_items.items():
+            if item_qty > 0:
+                self.multiworld.early_items[self.player][item_name] = item_qty
+			
 	# Add option for early/extras for Downtown items or Sewer Stuff, if configured
         # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
         if self._format_option_text(self.options.early_fire_hose) == 'True':
@@ -254,7 +261,7 @@ class ResidentEvil3Remake(World):
 
             for item_name, item_qty in early_items.items():
                 if item_qty > 0:
-                    self.multiworld.early_items[self.player][item_name] = item_qty
+                    self.multiworld.early_items[self.player][item_name] = item_qty  
 
         if self._format_option_text(self.options.extra_sewer_items) == 'True':
             replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
