@@ -106,11 +106,39 @@ class AllowProgressionInLabs(Choice):
 
     True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
-    NOTE - This option only affects *YOUR* NEST. Your progression can still be in someone else's if they have this option enabled."""
+    NOTE - This option only affects multiworlds."""
     display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
     default = 0
+	
+class AmmoPackModifier(Choice):
+    """This option, when set, will modify the quantity of ammo in each ammo pack. This can make the game easier or much, much harder.
+    The available options are:
+
+    None: You realized that consistency in ammo pack quantities is one of the few true joys in life, and this causes you to not modify them at all.
+    Max: Each ammo pack will contain the maximum amount of ammo that the game allows. (i.e., you will never, ever run out of ammo.)
+    Double: Each ammo pack will contain twice as much ammo as it normally contains.
+    Half: Each ammo pack will contain half as much ammo as it normally contains.
+    Only Three: Each ammo pack will have an ammo count of 3.
+    Only Two: Each ammo pack will have an ammo count of 2.
+    Only One: Each ammo pack will have an ammo count of 1. (Yes, your Handgun Ammo pack will have a single bullet in it.)
+    Random By Type: Each ammo type's ammo pack will have a random quantity of ammo, and you will get that same quantity of ammo from every pack for that ammo type.
+        (For example, you receive a Shotgun Shells pack that has a random quantity of 7 ammo. All Shotgun Shells packs will have a quantity of 7.)
+    Random Always: Each ammo pack will have a random quantity of ammo, and that quantity will be randomized every time.
+        (For example, you receive a Shotgun Shells pack that has a random quantity of 7 ammo. Your next Shotgun Shells pack has a quantity of 4, next has 2, etc.)
+
+    NOTE: The options for "Only Three", "Only Two", "Only One", "Random By Type", and "Random Always" are not guaranteed to be reasonably beatable."""
+    display_name = "Ammo Pack Modifier"
+    option_none = 0
+    option_max = 1
+    option_double = 2
+    option_half = 3
+    option_only_three = 4
+    option_only_two = 5
+    option_only_one = 6
+    option_random_by_type = 7
+    option_random_always = 8
 	
 class OopsAllGrenades(Choice):
     """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
@@ -189,50 +217,6 @@ class DamageTrapsCanKill(Choice):
     option_false = 0
     option_true = 1
     default = 0
-    
-# class AddParasiteTraps(Choice):
-    # """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
-    # These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
-    # """
-    # display_name = "Add Parasite Traps"
-    # option_false = 0
-    # option_true = 1
-    # default = 0
-
-# class ParasiteTrapCount(NamedRange):
-    # """While the "AddParasiteTraps" option is enabled, this option specifies how many of this trap should be placed.
-    # """
-    # default = 10
-    # range_start = 0
-    # range_end = 30 
-    # display_name = "Parasite Trap Count"
-    # special_range_names = {
-    #     "disabled": 0,
-    #     "half": 15,
-    #     "all": 30,
-    # }
-    
-# class AddPukeTraps(Choice):
-    # """Enabling this adds traps to your game that, when received, will cause you to vomit. e.g., when you heal yourself from parasites. 
-    # These traps are more of a nuisance than anything, but can be trolly if you're in the middle of combat.
-    # """
-    # display_name = "Add Puke Traps"
-    # option_false = 0
-    # option_true = 1
-    # default = 0
-    
-# class PukeTrapCount(NamedRange):
-    # """While the "AddPukeTraps" option is enabled, this option specifies how many of this trap should be placed.
-    # """
-    # default = 10
-    # range_start = 0
-    # range_end = 30 
-    # display_name = "Puke Trap Count"
-    # special_range_names = {
-    #     "disabled": 0,
-    #     "half": 15,
-    #     "all": 30,
-    # }
 
 # making this mixin so we can keep actual game options separate from AP core options that we want enabled
 # not sure why this isn't a mixin in core atm, anyways
@@ -252,6 +236,7 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     extra_sewer_items: ExtraSewerItems
     allow_missable_locations: AllowMissableLocations
     allow_progression_in_labs: AllowProgressionInLabs
+    ammo_pack_modifier: AmmoPackModifier
     oops_all_grenades: OopsAllGrenades
     oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray
@@ -261,8 +246,4 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     add_damage_traps: AddDamageTraps
     damage_trap_count: DamageTrapCount
     damage_traps_can_kill: DamageTrapsCanKill
-    # add_parasite_traps: AddParasiteTraps
-    # parasite_trap_count: ParasiteTrapCount
-    # add_puke_traps: AddPukeTraps
-    # puke_trap_count: PukeTrapCount
 

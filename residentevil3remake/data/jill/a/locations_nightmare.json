@@ -108,14 +108,13 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare"
     },
     {
-        "name": "Inside Security Office",
-        "region": "East Courtyard",
+        "name": "Near Door On Box",
+        "region": "Guard Room",
         "original_item": "ID Card",
         "condition": {},
         "item_object": "sm73_203",
         "parent_object": "sm73_203",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE",
-        "randomized": 0
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE"
     },
     {
         "name": "Attache Case",
