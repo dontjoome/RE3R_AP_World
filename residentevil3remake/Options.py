@@ -88,9 +88,9 @@ class AllowMissableLocations(Choice):
 
     False: (Default) Will place items so they are not permanently missable.
     This severely limits where progression can be to prevent softlocking of any kind. 
-    Will also remove progression for others if multiworld.
+    Will also remove progression from those location if for others in a multiworld.
     
-    True: Progression can be placed in locations that can be missed if story progresses too far, you've been warned (use the poptracker).
+    True: Progression can be placed in locations that can be missed if story progresses too far, you've been warned.
 
     NOTE - This option only affects *YOUR* game. Your progression can still be in someone else's if they have this option enabled."""
     display_name = "Allow Missable Locations"
@@ -106,7 +106,7 @@ class AllowProgressionInLabs(Choice):
 
     True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
-    NOTE - This option only affects multiworlds."""
+    NOTE - This option only affects *YOUR* game. Your progression can still be in someone else's Labs if they have this option enabled."""
     display_name = "Allow Progression in Labs"
     option_false = 0
     option_true = 1
