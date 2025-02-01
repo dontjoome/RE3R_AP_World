@@ -402,21 +402,21 @@
     "type": "Ammo",
     "name": "Handgun Ammo",
     "decimal": "31",
-    "count": 15,
+    "count": 10,
     "progression": 0
   },
   {
     "type": "Ammo",
     "name": "Shotgun Shells",
     "decimal": "32",
-    "count": 6,
+    "count": 5,
     "progression": 0
   },
   {
     "type": "Ammo",
     "name": "Assault Rifle Ammo",
     "decimal": "33",
-    "count": 100,
+    "count": 50,
     "progression": 0
   },
   {
