@@ -25,7 +25,7 @@ All of the scenarios' data lives in the `data` folder. The structure of the data
   - [Region Zones file](#region-zones-file)
 
 ### Character folder
-Data is loaded from the `jill` data folder, it contains all the scenario data and everything else involving the scenarios.
+Data is loaded from the `jill` character folder, it contains all the scenario data and everything else involving the scenarios.
 
 ---
 
