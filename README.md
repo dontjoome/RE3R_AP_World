@@ -1,7 +1,10 @@
 # RE3R Archipelago World
 An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for use with the RE3R Archipelago client repository linked below.
 
-## How to generate and play an RE3R randomized world
+## RE3R Archipelago Client
+Grab the latest client here: https://github.com/dontjoome/RE3R_AP_Client/
+
+## How to get setup, generate and play an RE3R randomized world
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
 ## What scenario/difficulty does this support?
