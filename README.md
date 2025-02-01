@@ -1,12 +1,15 @@
 # RE3R Archipelago World
 An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for use with the RE3R Archipelago client repository linked below.
 
-## How to generate and play an RE3R randomized world
+## RE3R Archipelago Client
+Grab the latest client here: https://github.com/dontjoome/RE3R_AP_Client/
+
+## How to get setup, generate and play an RE3R randomized world
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
 ## What scenario/difficulty does this support?
-Standard/Hardcore/Nightmare/Inferno are all supported.
-Just don't play on Assisted and you'll be fine. 
+All scenarios are currently supported.<br />
+If you play on Assisted, make sure you choose Standard in your yaml. 
 
 ## How is the scenarios data structured?
 All of the scenarios' data lives in the `data` folder. The structure of the data is:
@@ -22,7 +25,7 @@ All of the scenarios' data lives in the `data` folder. The structure of the data
   - [Region Zones file](#region-zones-file)
 
 ### Character folder
-Each character is separated into its own folder to group their scenarios together.
+Data is loaded from the `jill` character folder, it contains all the scenario data and everything else involving the scenarios.
 
 ---
 

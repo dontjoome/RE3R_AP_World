@@ -6,7 +6,20 @@
         "condition": {},
         "item_object": "sm74_200",
         "parent_object": "sm74_200_SideBag",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area/_Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area/_Nightmare",
+        "allow_item": [
+            "Fire Hose",
+            "Lock Pick",
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "By Ticket Gate 4",
@@ -15,7 +28,20 @@
         "condition": {},
         "item_object": "WP3000",
         "parent_object": "WP3000",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/Weapon/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/Weapon/Nightmare",
+        "allow_item": [
+            "Fire Hose",
+            "Lock Pick",
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "On Barrel in Alley",
@@ -96,7 +122,18 @@
         "condition": {},
         "item_object": "sm73_313",
         "parent_object": "sm73_313",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare",
+        "allow_item": [
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Table 3",
@@ -105,7 +142,17 @@
         "condition": {},
         "item_object": "sm70_206",
         "parent_object": "sm70_206",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare",
+        "allow_item": [
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "On Display Case",
@@ -114,26 +161,71 @@
         "condition": {},
         "item_object": "sm70_205",
         "parent_object": "sm70_205",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/Inferno"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/Inferno",
+        "allow_item": [
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
-        "name": "Inside Security Office",
-        "region": "East Courtyard",
+        "name": "Near Door On Box",
+        "region": "Guard Room",
         "original_item": "ID Card",
         "condition": {},
         "item_object": "sm73_203",
         "parent_object": "sm73_203",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE",
-        "randomized": 0
-    },   
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE"
+    },
     {
-        "name": "Desk near Safe",
+        "name": "ID Case",
+        "region": "RPD Reception",
+        "original_item": "Scope - Assault Rifle",
+        "condition": {
+            "items": [
+                "ID Card"
+            ]
+        },
+        "item_object": "sm71_200",
+        "parent_object": "ItemPositions_sm41_410",
+        "folder_path": "RopewayContents/World/Location_RPD/Environments/st02_0202_0/gimmick_Escape",
+        "allow_item": [
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
+    },
+    
+    {
+        "name": "ID Case",
         "region": "West Office",
-        "original_item": "Handgun Ammo",
-        "condition": {},
-        "item_object": "sm70_100",
-        "parent_object": "sm70_100",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
+        "original_item": "Assault Rifle Ammo",
+        "condition": {
+            "items": [
+                "ID Card"
+            ]
+        },
+        "item_object": "sm70_102",
+        "parent_object": "ItemPositions_sm41_410",
+        "folder_path": "RopewayContents/World/Location_RPD/Environments/st02_0202_0/gimmick_Escape",
+        "allow_item": [
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Table",
@@ -142,7 +234,16 @@
         "condition": {},
         "item_object": "sm70_001",
         "parent_object": "sm70_001_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common",
+        "allow_item": [
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Desk 1",
@@ -151,7 +252,16 @@
         "condition": {},
         "item_object": "sm70_102",
         "parent_object": "sm70_102_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common",
+        "allow_item": [
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Desk 2",
@@ -160,7 +270,16 @@
         "condition": {},
         "item_object": "sm70_100",
         "parent_object": "sm70_100_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common"
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common",
+        "allow_item": [
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Attache Case",
@@ -174,7 +293,14 @@
         },
         "item_object": "sm70_103",
         "parent_object": "Attache_MagnumBullet",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem"
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem",
+        "allow_item": [
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "By Truck",
@@ -183,7 +309,14 @@
         "condition": {},
         "item_object": "sm70_205",
         "parent_object": "st04_0302_sm70_205_01",
-        "folder_path": "RopewayContents/World/Location_Hospital2/LocationLevel_Hospital2/Item/common/ES_common/st04_0302"
+        "folder_path": "RopewayContents/World/Location_Hospital2/LocationLevel_Hospital2/Item/common/ES_common/st04_0302",
+        "allow_item": [
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Table",
@@ -192,7 +325,11 @@
         "condition": {},
         "item_object": "sm70_100",
         "parent_object": "sm70_100_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/01_LockerRoom"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/01_LockerRoom",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "By Corpse",
@@ -201,16 +338,24 @@
         "condition": {},
         "item_object": "sm70_205",
         "parent_object": "sm70_205_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
-        "name": "Case near Servers",
+        "name": "Case Near Servers",
         "region": "Server Room 2F",
         "original_item": "Explosive B",
         "condition": {},
         "item_object": "sm70_208",
         "parent_object": "sm70_208_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Attache Case",
@@ -219,7 +364,11 @@
         "condition": {},
         "item_object": "sm70_207",
         "parent_object": "sm70_208_Acase",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "On Cart",
@@ -228,7 +377,11 @@
         "condition": {},
         "item_object": "sm70_002",
         "parent_object": "sm70_002_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "By Case",
@@ -237,7 +390,11 @@
         "condition": {},
         "item_object": "sm70_206",
         "parent_object": "sm70_206_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
+        "allow_item": [
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Final Fight 10",
@@ -250,7 +407,7 @@
     },
     
     {
-        "name": "Counter by Door",
+        "name": "Counter By Door",
         "region": "Supermarket",
         "remove": true
     },
@@ -290,12 +447,22 @@
         "remove": true
     },
     {
+        "name": "Near Breakable Box",
+        "region": "East Courtyard",
+        "remove": true
+    },
+    {
         "name": "Waiting Room Barricade",
         "region": "Main Lobby",
         "remove": true
     },
     {
-        "name": "Cabinet near Reception Window",
+        "name": "Cabinet Near Reception Window",
+        "region": "West Office",
+        "remove": true
+    },
+    {
+        "name": "Desk Near Safe",
         "region": "West Office",
         "remove": true
     },
@@ -380,22 +547,22 @@
         "remove": true
     },
     {
-        "name": "In Container by Fuse 1",
+        "name": "In Container By Fuse 1",
         "region": "Warehouse",
         "remove": true
     },
     {
-        "name": "In Container by Fuse 2",
+        "name": "In Container By Fuse 2",
         "region": "Warehouse",
         "remove": true
     },
     {
-        "name": "In Container by Fuse 3",
+        "name": "In Container By Fuse 3",
         "region": "Warehouse",
         "remove": true
     },
     {
-        "name": "In Container by Fuse 4",
+        "name": "In Container By Fuse 4",
         "region": "Warehouse",
         "remove": true
     },

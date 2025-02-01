@@ -37,7 +37,7 @@ class ResidentEvil3Remake(World):
 
     data_version = 2
     required_client_version = (0, 5, 0)
-    apworld_release_version = "0.1.6" # defined to show in spoiler log
+    apworld_release_version = "0.2.0" # defined to show in spoiler log
 
     item_id_to_name = { item['id']: item['name'] for item in Data.item_table }
     item_name_to_id = { item['name']: item['id'] for item in Data.item_table }
@@ -73,7 +73,7 @@ class ResidentEvil3Remake(World):
 
         for region in regions:
             if region.name in added_regions:
-                continue
+             continue
 
             added_regions.append(region.name)
             region.locations = [
@@ -97,9 +97,8 @@ class ResidentEvil3Remake(World):
                 # These options severely limits where items can be..
                 elif self._format_option_text(self.options.allow_missable_locations) == 'False' and region_data['zone_id'] != 6:
                     location.item_rule = lambda item: not item.advancement
-                elif self._format_option_text(self.options.allow_progression_in_labs) == 'False' and region_data['zone_id'] == 6:
+                elif self._format_option_text(self.options.allow_progression_in_nest) == 'False' and region_data['zone_id'] == 6:
                     location.item_rule = lambda item: not item.advancement
-		# END
 
                 if 'allow_item' in location_data and location_data['allow_item']:
                     current_item_rule = location.item_rule or None
@@ -107,7 +106,7 @@ class ResidentEvil3Remake(World):
                     if not current_item_rule:
                         current_item_rule = lambda x: True
 
-                    location.item_rule = lambda item, location_data=location_data: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
+                    location.item_rule = lambda item: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
 
                 # now, set rules for the location access
                 if "condition" in location_data and "items" in location_data["condition"]:
@@ -165,7 +164,7 @@ class ResidentEvil3Remake(World):
             # if the hip pouches option exceeds the number of hip pouches in the pool, reduce it to the number in the pool
             if starting_hip_pouches > len(hip_pouches):
                 starting_hip_pouches = len(hip_pouches)
-                self.options.starting_hip_pouches = len(hip_pouches)
+                self.options.starting_hip_pouches.value = len(hip_pouches)
 
             for x in range(starting_hip_pouches):
                 self.multiworld.push_precollected(hip_pouches[x]) # starting inv
@@ -209,14 +208,6 @@ class ResidentEvil3Remake(World):
             for x in range(int(self.options.damage_trap_count)):
                 traps.append(self.create_item("Damage Trap"))
                 
-        # if self._format_option_text(self.options.add_parasite_traps) == 'True':
-            # for x in range(int(self.options.parasite_trap_count)):
-                # traps.append(self.create_item("Parasite Trap"))
-                
-        # if self._format_option_text(self.options.add_puke_traps) == 'True':
-            # for x in range(int(self.options.puke_trap_count)):
-                # traps.append(self.create_item("Puke Trap"))
-                
         if len(traps) > 0:
             # use these spots for replacement first, since they're entirely non-essential
             available_spots = [
@@ -245,7 +236,14 @@ class ResidentEvil3Remake(World):
                 trap_to_place = traps.pop()
                 pool.remove(spot)
                 pool.append(trap_to_place)
-				
+	
+        early_items = {}  
+        early_items["ID Card"] = len([i for i in pool if i.name == "ID Card"])     
+
+        for item_name, item_qty in early_items.items():
+            if item_qty > 0:
+                self.multiworld.early_items[self.player][item_name] = item_qty
+			
 	# Add option for early/extras for Downtown items or Sewer Stuff, if configured
         # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
         if self._format_option_text(self.options.early_fire_hose) == 'True':
@@ -254,7 +252,7 @@ class ResidentEvil3Remake(World):
 
             for item_name, item_qty in early_items.items():
                 if item_qty > 0:
-                    self.multiworld.early_items[self.player][item_name] = item_qty
+                    self.multiworld.early_items[self.player][item_name] = item_qty  
 
         if self._format_option_text(self.options.extra_sewer_items) == 'True':
             replaceables = [item for item in pool if item.name == 'Green Herb' or item.name == 'Handgun Ammo']
@@ -315,7 +313,8 @@ class ResidentEvil3Remake(World):
         else: # it's Filler
             classification = ItemClassification.filler
 
-        return Item(item['name'], classification, item['id'], player=self.player)
+        new_item = Item(item['name'], classification, item['id'], player=self.player)
+        return new_item
 
     def get_filler_item_name(self) -> str:
         return "Flash Grenade"
@@ -326,6 +325,7 @@ class ResidentEvil3Remake(World):
             "scenario": self._get_scenario(),
             "difficulty": self._get_difficulty(),
             "unlocked_typewriters": self._format_option_text(self.options.unlocked_typewriters).split(", "),
+            "ammo_pack_modifier": self._format_option_text(self.options.ammo_pack_modifier),
             "damage_traps_can_kill": self._format_option_text(self.options.damage_traps_can_kill) == 'True',
             "death_link": self._format_option_text(self.options.death_link) == 'Yes' # why is this yes? lol
         }
@@ -337,20 +337,38 @@ class ResidentEvil3Remake(World):
         # print (self._output_items_and_locations_as_text()) - For printing item locations out during generation of a seed.
 
     def _has_items(self, state: CollectionState, item_names: list) -> bool:
-        # if it requires all unique items, just do a state has all
-        if len(set(item_names)) == len(item_names):
-            return state.has_all(item_names, self.player)
-        # else, it requires some duplicates, so let's group them up and do some has w/ counts
-        else:
-            item_counts = {
-                item_name: len([i for i in item_names if i == item_name]) for item_name in item_names # e.g., { Spare Key: 2 }
-            }
-
-            for item_name, count in item_counts.items():
-                if not state.has(item_name, self.player, count):
-                    return False
-                
+        # if there are no item requirements, this location is open, they "have the items needed"
+        if len(item_names) == 0:
             return True
+
+        # if the requirements are a single set of items, make it a list of a single set of items to support looping for multiple sets (below)
+        if len(item_names) > 0 and type(item_names[0]) is not list:
+            item_names = [item_names]
+
+        for set_of_requirements in item_names:
+            # if it requires all unique items, just do a state has all
+            if len(set(set_of_requirements)) == len(set_of_requirements):
+                if state.has_all(set_of_requirements, self.player):
+                    return True
+            # else, it requires some duplicates, so let's group them up and do some has w/ counts
+            else:
+                item_counts = {
+                    item_name: len([i for i in set_of_requirements if i == item_name]) for item_name in set_of_requirements # e.g., { Spare Key: 2 }
+                }
+                missing_an_item = False
+
+                for item_name, count in item_counts.items():
+                    if not state.has(item_name, self.player, count):
+                        missing_an_item = True
+
+                if missing_an_item:
+                    continue # didn't meet these requirements, so skip to the next set, if any
+                
+                # if we made it here, state has all the items and the quantities needed, return True
+                return True
+
+        # if we made it here, state didn't have enough to return True, so return False
+        return False
 
     def _format_option_text(self, option) -> str:
         return re.sub(r'\w+\(', '', str(option)).rstrip(')')

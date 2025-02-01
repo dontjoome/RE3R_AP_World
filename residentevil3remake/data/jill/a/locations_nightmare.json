@@ -6,7 +6,20 @@
         "condition": {},
         "item_object": "sm74_200",
         "parent_object": "sm74_200_SideBag",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area/_Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_100_Subway_Area/_Nightmare",
+        "allow_item": [
+            "Fire Hose",
+            "Lock Pick",
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "By Ticket Gate 4",
@@ -15,7 +28,20 @@
         "condition": {},
         "item_object": "WP3000",
         "parent_object": "WP3000",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/Weapon/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/Weapon/Nightmare",
+        "allow_item": [
+            "Fire Hose",
+            "Lock Pick",
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "On Barrel in Alley",
@@ -45,7 +71,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_200_T-Junction_Area/Nightmare"
     },
     {
-        "name": "Box by Donut Shop",
+        "name": "Box By Donut Shop",
         "region": "Shopping Plaza",
         "original_item": "High-Grade Gunpowder",
         "condition": {},
@@ -63,7 +89,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
     },
     {
-        "name": "Downed Zombie by Entrance",
+        "name": "Downed Zombie By Entrance",
         "region": "Subway Office",
         "original_item": "Hand Grenade",
         "condition": {},
@@ -90,13 +116,24 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
     },
     {
-        "name": "Power Panel by Scaffolding",
+        "name": "Power Panel By Scaffolding",
         "region": "Power Maze",
         "original_item": "Fancy Box - Red Jewel",
         "condition": {},
         "item_object": "sm73_313",
         "parent_object": "sm73_313",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare",
+        "allow_item": [
+            "Battery Pack",
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Table 3",
@@ -105,17 +142,26 @@
         "condition": {},
         "item_object": "sm70_206",
         "parent_object": "sm70_206",
-        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare"
+        "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare",
+        "allow_item": [
+            "Kendo Gate Key",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
-        "name": "Inside Security Office",
-        "region": "East Courtyard",
+        "name": "Near Door On Box",
+        "region": "Guard Room",
         "original_item": "ID Card",
         "condition": {},
         "item_object": "sm73_203",
         "parent_object": "sm73_203",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE",
-        "randomized": 0
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE"
     },
     {
         "name": "Attache Case",
@@ -129,7 +175,14 @@
         },
         "item_object": "sm70_103",
         "parent_object": "Attache_MagnumBullet",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem"
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/LockerItem",
+        "allow_item": [
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "Final Fight 10",
@@ -142,7 +195,7 @@
     },
 
     {
-        "name": "Counter by Door",
+        "name": "Counter By Door",
         "region": "Supermarket",
         "remove": true
     },
