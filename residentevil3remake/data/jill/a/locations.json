@@ -2559,59 +2559,14 @@
     {
         "name": "Cart 1",
         "region": "Operating Room",
-        "original_item": "Flash Grenade",
+        "original_item": "Green Herb",
         "condition": {},
-        "item_object": "WP6300",
-        "parent_object": "st04_0108_Wp6300_01",
+        "item_object": "sm70_001",
+        "parent_object": "st04_0108_sm70_001_00",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
     },
     {
         "name": "Cart 2",
-        "region": "Operating Room",
-        "original_item": "Hand Grenade",
-        "condition": {},
-        "item_object": "WP6200",
-        "parent_object": "st04_0108_wp6100_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
-    },
-    {
-        "name": "Cart 3",
-        "region": "Operating Room",
-        "original_item": "Flash Grenade",
-        "condition": {},
-        "item_object": "WP6300",
-        "parent_object": "st04_0108_Wp6300_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
-    },
-    {
-        "name": "Cart 4",
-        "region": "Operating Room",
-        "original_item": "Hand Grenade",
-        "condition": {},
-        "item_object": "WP6200",
-        "parent_object": "st04_0108_wp6100_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
-    },
-    {
-        "name": "Cart 5",
-        "region": "Operating Room",
-        "original_item": "Assault Rifle Ammo",
-        "condition": {},
-        "item_object": "sm70_102",
-        "parent_object": "st04_0108_sm70_102_00",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0108"
-    },
-    {
-        "name": "Cart 6",
-        "region": "Operating Room",
-        "original_item": "Assault Rifle Ammo",
-        "condition": {},
-        "item_object": "sm70_102",
-        "parent_object": "st04_0108_sm70_102_01",
-        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0108"
-    },
-    {
-        "name": "Cart 7",
         "region": "Operating Room",
         "original_item": "Handgun Ammo",
         "condition": {},
@@ -2620,12 +2575,57 @@
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
     },
     {
+        "name": "Cart 3",
+        "region": "Operating Room",
+        "original_item": "Assault Rifle Ammo",
+        "condition": {},
+        "item_object": "sm70_102",
+        "parent_object": "st04_0108_sm70_102_01",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0108"
+    },
+    {
+        "name": "Cart 4",
+        "region": "Operating Room",
+        "original_item": "Assault Rifle Ammo",
+        "condition": {},
+        "item_object": "sm70_102",
+        "parent_object": "st04_0108_sm70_102_00",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/ES_common/Item/st04_0108"
+    },
+    {
+        "name": "Cart 5",
+        "region": "Operating Room",
+        "original_item": "Hand Grenade",
+        "condition": {},
+        "item_object": "WP6200",
+        "parent_object": "st04_0108_wp6100_00",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
+    },
+    {
+        "name": "Cart 6",
+        "region": "Operating Room",
+        "original_item": "Flash Grenade",
+        "condition": {},
+        "item_object": "WP6300",
+        "parent_object": "st04_0108_Wp6300_00",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
+    },
+    {
+        "name": "Cart 7",
+        "region": "Operating Room",
+        "original_item": "Hand Grenade",
+        "condition": {},
+        "item_object": "WP6200",
+        "parent_object": "st04_0108_wp6100_01",
+        "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
+    },
+    {
         "name": "Cart 8",
         "region": "Operating Room",
-        "original_item": "Green Herb",
+        "original_item": "Flash Grenade",
         "condition": {},
-        "item_object": "sm70_001",
-        "parent_object": "st04_0108_sm70_001_00",
+        "item_object": "WP6300",
+        "parent_object": "st04_0108_Wp6300_01",
         "folder_path": "RopewayContents/World/Location_Hospital/LocationLevel_Hospital/Item/common/st04_0108"
     },
     {
