@@ -5,8 +5,8 @@ An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for us
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
 ## What scenario/difficulty does this support?
-Standard/Hardcore/Nightmare/Inferno are all supported.
-Just don't play on Assisted and you'll be fine. 
+All scenarios are currently supported.
+If you play on Assisted, make sure you choose Standard in your yaml. 
 
 ## How is the scenarios data structured?
 All of the scenarios' data lives in the `data` folder. The structure of the data is:
@@ -22,7 +22,7 @@ All of the scenarios' data lives in the `data` folder. The structure of the data
   - [Region Zones file](#region-zones-file)
 
 ### Character folder
-Each character is separated into its own folder to group their scenarios together.
+Data is loaded from the `jill` data folder, it contains all the scenario data and everything else involving the scenarios.
 
 ---
 
