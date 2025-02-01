@@ -8,7 +8,7 @@ Grab the latest client here: https://github.com/dontjoome/RE3R_AP_Client/
 Follow the visual setup guide here: https://dontjoome.github.io/RE3R_AP_SetupGuide/
 
 ## What scenario/difficulty does this support?
-All scenarios are currently supported.
+All scenarios are currently supported.<br />
 If you play on Assisted, make sure you choose Standard in your yaml. 
 
 ## How is the scenarios data structured?
