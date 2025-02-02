@@ -1,6 +1,11 @@
 # RE3R Archipelago World
 An Archipelago (AP) randomizer world for Resident Evil 3 Remake. Designed for use with the RE3R Archipelago client repository linked below.
 
+## Missable Locations
+- Due to the nature of the game, there are points of no return and as such you can potentially miss items if you progress far enough.
+- Setting **Allow Missable Locations** to false will not put progression in those locations, but you will still find useful/junk/traps.
+- You can find progression if that setting is set to true, fair warning.
+
 ## RE3R Archipelago Client
 Grab the latest client here: https://github.com/dontjoome/RE3R_AP_Client/
 
