@@ -12,6 +12,7 @@
             "Lock Pick",
             "Battery Pack",
             "Kendo Gate Key",
+            "ID Card",
             "Locker Room Key",
             "Tape Player",
             "Fuse 1",
@@ -34,6 +35,7 @@
             "Lock Pick",
             "Battery Pack",
             "Kendo Gate Key",
+            "ID Card",
             "Locker Room Key",
             "Tape Player",
             "Fuse 1",
@@ -71,7 +73,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_200_T-Junction_Area/Nightmare"
     },
     {
-        "name": "Box by Donut Shop",
+        "name": "Box By Donut Shop",
         "region": "Shopping Plaza",
         "original_item": "High-Grade Gunpowder",
         "condition": {},
@@ -89,7 +91,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
     },
     {
-        "name": "Downed Zombie by Entrance",
+        "name": "Downed Zombie By Entrance",
         "region": "Subway Office",
         "original_item": "Hand Grenade",
         "condition": {},
@@ -116,7 +118,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/KeyItem/Nightmare"
     },
     {
-        "name": "Power Panel by Scaffolding",
+        "name": "Power Panel By Scaffolding",
         "region": "Power Maze",
         "original_item": "Fancy Box - Red Jewel",
         "condition": {},
@@ -126,6 +128,7 @@
         "allow_item": [
             "Battery Pack",
             "Kendo Gate Key",
+            "ID Card",
             "Locker Room Key",
             "Tape Player",
             "Fuse 1",
@@ -145,6 +148,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_900_Sewer/Nightmare",
         "allow_item": [
             "Kendo Gate Key",
+            "ID Card",
             "Locker Room Key",
             "Tape Player",
             "Fuse 1",
@@ -164,6 +168,7 @@
         "folder_path": "RopewayContents/World/Location_DownTown/LocationLevel_DownTown/LocationFsm_DownTown/S03_1000/ES_S03_1000/Item/ES_S03_1000/I_1100_Kendo_Area/Inferno",
         "allow_item": [
             "Kendo Gate Key",
+            "ID Card",
             "Locker Room Key",
             "Tape Player",
             "Fuse 1",
@@ -180,7 +185,17 @@
         "condition": {},
         "item_object": "sm73_203",
         "parent_object": "sm73_203",
-        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE"
+        "folder_path": "RopewayContents/World/Location_RPD/LocationLevel_RPD/Item/common/ES_common/NIGHTMARE",
+        "allow_item": [
+            "ID Card",
+            "Locker Room Key",
+            "Tape Player",
+            "Fuse 1",
+            "Fuse 2",
+            "Fuse 3",
+            "Override Key",
+            "Culture Sample"
+        ]
     },
     {
         "name": "ID Case",
