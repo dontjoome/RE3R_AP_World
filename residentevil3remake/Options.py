@@ -142,20 +142,13 @@ class AmmoPackModifier(Choice):
     option_random_by_type = 7
     option_random_always = 8
 	
-class OopsAllGrenades(Choice):
-    """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Grenades. 
+class OopsAll(Choice):
+    """Enabling this swaps all weapons, weapon ammo, subweapons, and explosive/gunpowder to the selected item.
     (Except your starting weapon)"""
-    display_name = "Oops! All Grenades"
-    option_false = 0
-    option_true = 1
-    default = 0
-    
-class OopsAllHandguns(Choice):
-    """Enabling this swaps all weapons, weapon ammo, subweapons and explosive/gunpowder to Handgun Ammo.
-    """
-    display_name = "Oops! All Handguns"
-    option_false = 0
-    option_true = 1
+    display_name = "Oops! All ____"
+    option_disabled = 0
+    option_grenades = 1  # Renamed from option_hand_grenade
+    option_handguns = 2  # Renamed from option_handgun_ammo
     default = 0
 	
 class NoFirstAidSpray(Choice):
@@ -239,8 +232,7 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     allow_missable_locations: AllowMissableLocations
     allow_progression_in_nest: AllowProgressionInNEST
     ammo_pack_modifier: AmmoPackModifier
-    oops_all_grenades: OopsAllGrenades
-    oops_all_handguns: OopsAllHandguns
+    oops_all: OopsAll
     no_first_aid_spray: NoFirstAidSpray
     no_green_herb: NoGreenHerb
     no_red_herb: NoRedHerb

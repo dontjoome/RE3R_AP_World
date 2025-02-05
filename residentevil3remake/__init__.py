@@ -1,17 +1,12 @@
 import re
-import typing
-
 from typing import Dict, Any, TextIO
-from Utils import visualize_regions
 
 from BaseClasses import ItemClassification, Item, Location, Region, CollectionState
 from worlds.AutoWorld import World
-from ..generic.Rules import set_rule
-from Fill import fill_restrictive
 
 from .Data import Data
 from .Options import RE3ROptions
-
+from ..generic.Rules import set_rule
 
 Data.load_data('jill', 'a')
 
@@ -68,7 +63,7 @@ class ResidentEvil3Remake(World):
         regions = [
             Region(region['name'], self.player, self.multiworld) 
                 for region in scenario_regions
-        ]
+]
         added_regions = []
 
         for region in regions:
@@ -138,7 +133,7 @@ class ResidentEvil3Remake(World):
 
         self.multiworld.completion_condition[self.player] = lambda state: self._has_items(state, ['Victory'])
 
-    def create_items(self):
+    def create_items(self, to_item_names=None):
         scenario_locations = self.source_locations[self.player]
 
         pool = [
@@ -171,13 +166,21 @@ class ResidentEvil3Remake(World):
                 pool.remove(hip_pouches[x])
 
         # check the bonus start option and add some heal items and ammo packs as precollected / starting items
-        if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'True':
-            for x in range(3): self.multiworld.push_precollected(self.create_item('First Aid Spray'))
-            for x in range(3): self.multiworld.push_precollected(self.create_item('Hand Grenade'))
-            
-        if self._format_option_text(self.options.bonus_start) == 'True' and self._format_option_text(self.options.oops_all_grenades) == 'False':
-            for x in range(3): self.multiworld.push_precollected(self.create_item('First Aid Spray'))
-            for x in range(4): self.multiworld.push_precollected(self.create_item('Handgun Ammo'))
+        if self._format_option_text(self.options.bonus_start) == 'True':
+            # Add First Aid Sprays regardless of the "Oops! All ____" option
+            for x in range(3):
+                self.multiworld.push_precollected(self.create_item('First Aid Spray'))
+
+            # Determine which ammo type to add based on the "Oops! All ____" option
+            if self._format_option_text(self.options.oops_all) != 'Disabled':
+                selected_item = to_item_names[self.options.oops_all.value]
+
+                if selected_item == 'Hand Grenade':
+                    for x in range(3):
+                        self.multiworld.push_precollected(self.create_item('Hand Grenade'))
+                elif selected_item == 'Handgun Ammo':
+                    for x in range(4):
+                        self.multiworld.push_precollected(self.create_item('Handgun Ammo'))
 
         # do all the "no X" options here so we have more empty spots to use for traps, if needed
         if self._format_option_text(self.options.no_first_aid_spray) == 'True':
@@ -236,18 +239,17 @@ class ResidentEvil3Remake(World):
                 trap_to_place = traps.pop()
                 pool.remove(spot)
                 pool.append(trap_to_place)
-	
-        early_items = {}  
-        early_items["ID Card"] = len([i for i in pool if i.name == "ID Card"])     
+
+        early_items = {"ID Card": len([i for i in pool if i.name == "ID Card"])}
 
         for item_name, item_qty in early_items.items():
             if item_qty > 0:
                 self.multiworld.early_items[self.player][item_name] = item_qty
-			
-	# Add option for early/extras for Downtown items or Sewer Stuff, if configured
+
+    # Add option for early/extras for Downtown items or Sewer Stuff, if configured
         # doing this before "oops all X" to make use of extra Handgun Ammo spots, too
         if self._format_option_text(self.options.early_fire_hose) == 'True':
-            early_items = {}  
+            early_items = {}
             early_items["Fire Hose"] = len([i for i in pool if i.name == "Fire Hose"])     
 
             for item_name, item_qty in early_items.items():
@@ -266,29 +268,33 @@ class ResidentEvil3Remake(World):
         # check the "Oops! All Grenades" option. From the option description:
         #     Enabling this swaps all weapons, weapon ammo, and subweapons to Grenades. 
         #     (Except progression weapons, of course.)
-        if self._format_option_text(self.options.oops_all_grenades) == 'True':
-            items_to_replace = [
-                item for item in self.item_name_to_item.values() 
-                if 'type' in item and item['type'] in ['Weapon', 'Ammo', 'Crafting']
-            ]
-            to_item_name = 'Hand Grenade'
+        if self._format_option_text(self.options.oops_all) != 'Disabled':
+            to_item_names = ['Disabled', 'Hand Grenade', 'Handgun Ammo']
 
-            for from_item in items_to_replace:
-                pool = self._replace_pool_item_with(pool, from_item['name'], to_item_name)
-                
-        # check the "Oops! All Handguns" option. From the option description:
-        #     Enabling this swaps all weapons, weapon ammo, and subweapons to Handgun Ammo. 
-        #     (Except handguns, of course.)
-                
-        if self._format_option_text(self.options.oops_all_handguns) == 'True':
-            items_to_replace = [
-                item for item in self.item_name_to_item.values() 
-                if 'type' in item and item['type'] in ['Weapon', 'Subweapon', 'Ammo', 'Crafting'] and item['name'] != 'G18'
-            ]
-            to_item_name = 'Handgun Ammo'
+            selected_item = to_item_names[self.options.oops_all.value]
 
+            item_types_to_replace = ['Weapon', 'Subweapon', 'Ammo', 'Crafting']
+
+            items_to_replace = [
+                item for item in self.item_name_to_item.values()
+                if 'type' in item and item['type'] in item_types_to_replace
+            ]
+
+            if selected_item == 'Hand Grenade':
+                items_to_replace = [
+                    item for item in items_to_replace
+                    if item['name'] not in ['Flash Grenade']
+                ]
+
+            if selected_item == 'Handgun Ammo':
+                items_to_replace = [
+                    item for item in items_to_replace
+                    if item['name'] not in ['G18']
+                ]
+
+            # Replace items in the pool with the selected item
             for from_item in items_to_replace:
-                pool = self._replace_pool_item_with(pool, from_item['name'], to_item_name)
+                pool = self._replace_pool_item_with(pool, from_item['name'], selected_item)
 
         # if the number of unfilled locations exceeds the count of the pool, fill the remainder of the pool with extra maybe helpful items
         missing_item_count = len(self.multiworld.get_unfilled_locations(self.player)) - len(pool)
