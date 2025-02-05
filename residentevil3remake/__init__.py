@@ -68,7 +68,7 @@ class ResidentEvil3Remake(World):
         regions = [
             Region(region['name'], self.player, self.multiworld) 
                 for region in scenario_regions
-]
+        ]
         added_regions = []
 
         for region in regions:
