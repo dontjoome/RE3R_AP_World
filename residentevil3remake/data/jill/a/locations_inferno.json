@@ -18,7 +18,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -40,7 +41,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -132,7 +134,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -151,7 +154,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -170,7 +174,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -188,7 +193,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -210,7 +216,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     
@@ -233,7 +240,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -251,7 +259,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -269,7 +278,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -287,7 +297,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -308,7 +319,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -324,7 +336,8 @@
             "Fuse 2",
             "Fuse 3",
             "Override Key",
-            "Culture Sample"
+            "Culture Sample",
+            "Liquid-Filled Test Tube"
         ]
     },
     {
@@ -334,11 +347,7 @@
         "condition": {},
         "item_object": "sm70_100",
         "parent_object": "sm70_100_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/01_LockerRoom",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/01_LockerRoom"
     },
     {
         "name": "By Corpse",
@@ -347,11 +356,7 @@
         "condition": {},
         "item_object": "sm70_205",
         "parent_object": "sm70_205_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
         "name": "Case Near Servers",
@@ -360,11 +365,7 @@
         "condition": {},
         "item_object": "sm70_208",
         "parent_object": "sm70_208_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
         "name": "Attache Case",
@@ -373,11 +374,7 @@
         "condition": {},
         "item_object": "sm70_207",
         "parent_object": "sm70_208_Acase",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
         "name": "On Cart",
@@ -386,11 +383,7 @@
         "condition": {},
         "item_object": "sm70_002",
         "parent_object": "sm70_002_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
         "name": "By Case",
@@ -399,11 +392,7 @@
         "condition": {},
         "item_object": "sm70_206",
         "parent_object": "sm70_206_onlyUnlimited",
-        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory",
-        "allow_item": [
-            "Override Key",
-            "Culture Sample"
-        ]
+        "folder_path": "RopewayContents/World/Location_Laboratory/LocationLevel_Laboratory/Item/common/ES_Common/02_Laboratory"
     },
     {
         "name": "Final Fight 10",

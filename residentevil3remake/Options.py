@@ -20,10 +20,8 @@ class Scenario(Choice):
 class Difficulty(Choice):
     """Standard: Most people should play on this.
     Hardcore: Slightly tougher, but not by much. 
-    Nightmare: It actually rains zombies, Kappa.
-    Inferno: Hope your name isn't Gohan, because you need to dodge a lot.
-    
-    NOTE: You can play Assisted difficulty in-game, but make sure you choose Standard for this setting."""
+    Nightmare: It actually rains zombies, Kappa
+    Inferno: Hope your name isn't Gohan, because you need to dodge... a lot"""
     display_name = "Difficulty to Play On"
     option_standard = 0
     option_hardcore = 1
@@ -66,15 +64,15 @@ class EarlyFireHose(Choice):
     """Receiving Fire Hose late can lead to some intense BK.
     This option will place it early to lower the odds of BK.
 
-    False: Will place it anywhere in the seed, which if multiworld can lead to lengthy BK.
-    True: Will place it in Sphere 1 of the seed, and should prevent BK."""
+    False: Normal, will place it anywhere in the world and you may be waiting a bit to progress.
+    True: Will place it in Sphere 1 of the world, and should prevent lengthy BK."""
     display_name = "Early Fire Hose"
     option_false = 0
     option_true = 1
     default = 0
 
 class ExtraSewerItems(Choice):
-    """Receiving Battery Pack or Kendo's Gate Key late can lead to the same situation.
+    """Not getting Battery Pack or Kendo Gate Key early can lead to the same situation.
     This option adds an extra set of these items so the odds of BK are lower.
 
     False: Normal, only 1 of each are in the item pool.
@@ -90,7 +88,7 @@ class AllowMissableLocations(Choice):
 
     False: (Default) Will place items so they are not permanently missable.
     This severely limits where progression can be to prevent softlocking of any kind. 
-    Will also remove progression from those locations if for others in a multiworld.
+    Will also remove progression for others if multiworld.
     
     True: Progression can be placed in locations that can be missed if story progresses too far, you've been warned.
 
@@ -101,19 +99,19 @@ class AllowMissableLocations(Choice):
     default = 0
     
 class AllowProgressionInNEST(Choice):
-    """While next to impossible to skip anything in NEST, it would certainly feel bad if someones Morph Ball ended up there.
+    """While next to impossible to skip anything in NEST, it would certainly feel bad if someone's Morph Ball ended up there.
     This option will completely remove progression from being at your end game, including the ten locations in Nemesis Final Fight. 
 
     False: (Default) Will place useful/junk items into NEST, the non-randomized locations will stay the same.
 
     True: Progression can be placed in NEST, remind everyone it was your fault when you are holding them hostage.
 
-    NOTE - This option only affects *YOUR* game. Your progression can still be in someone else's NEST if they have this option enabled."""
+    NOTE - This option only affects multiworlds."""
     display_name = "Allow Progression in NEST"
     option_false = 0
     option_true = 1
     default = 0
-	
+
 class AmmoPackModifier(Choice):
     """This option, when set, will modify the quantity of ammo in each ammo pack. This can make the game easier or much, much harder.
     The available options are:
@@ -142,13 +140,20 @@ class AmmoPackModifier(Choice):
     option_random_by_type = 7
     option_random_always = 8
 	
-class OopsAll(Choice):
-    """Enabling this swaps all weapons, weapon ammo, subweapons, and explosive/gunpowder to the selected item.
+class OopsAllGrenades(Choice):
+    """Enabling this swaps all weapons, ammo, subweapons, upgrades and explosive/gunpowder to Grenades.
     (Except your starting weapon)"""
-    display_name = "Oops! All ____"
-    option_disabled = 0
-    option_grenades = 1  # Renamed from option_hand_grenade
-    option_handguns = 2  # Renamed from option_handgun_ammo
+    display_name = "Oops! All Grenades"
+    option_false = 0
+    option_true = 1
+    default = 0
+    
+class OopsAllHandguns(Choice):
+    """Enabling this swaps all weapons, ammo, subweapons, upgrades and explosive/gunpowder to Handgun Ammo.
+    (Except your starting weapon)"""
+    display_name = "Oops! All Handguns"
+    option_false = 0
+    option_true = 1
     default = 0
 	
 class NoFirstAidSpray(Choice):
@@ -212,6 +217,15 @@ class DamageTrapsCanKill(Choice):
     option_false = 0
     option_true = 1
     default = 0
+    
+class AddParasiteTraps(Choice):
+    """Enabling this adds traps to your game that, when received, gives you parasites. e.g., when you get grabbed by deimos. 
+    These traps cannot kill you, but they will continuously damage you over time, similar to the Poison status in RE2R.
+    """
+    display_name = "Add Parasite Traps"
+    option_false = 0
+    option_true = 1
+    default = 0
 
 # making this mixin so we can keep actual game options separate from AP core options that we want enabled
 # not sure why this isn't a mixin in core atm, anyways
@@ -232,7 +246,8 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     allow_missable_locations: AllowMissableLocations
     allow_progression_in_nest: AllowProgressionInNEST
     ammo_pack_modifier: AmmoPackModifier
-    oops_all: OopsAll
+    oops_all_grenades: OopsAllGrenades
+    oops_all_handguns: OopsAllHandguns
     no_first_aid_spray: NoFirstAidSpray
     no_green_herb: NoGreenHerb
     no_red_herb: NoRedHerb
@@ -240,4 +255,3 @@ class RE3ROptions(StartInventoryFromPoolMixin, DeathLinkMixin, PerGameCommonOpti
     add_damage_traps: AddDamageTraps
     damage_trap_count: DamageTrapCount
     damage_traps_can_kill: DamageTrapsCanKill
-
