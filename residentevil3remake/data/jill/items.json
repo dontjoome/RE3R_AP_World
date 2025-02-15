@@ -156,22 +156,22 @@
 
   {
     "type": "Gating",
-    "name": "Fancy Box - Green Jewel",
-    "decimal": "192",
+    "name": "Green Jewel",
+    "decimal": "187",
     "count": 1,
     "progression": 1
   },
   {
     "type": "Gating",
-    "name": "Fancy Box - Blue Jewel",
-    "decimal": "193",
+    "name": "Blue Jewel",
+    "decimal": "188",
     "count": 1,
     "progression": 1
   },
   {
     "type": "Gating",
-    "name": "Fancy Box - Red Jewel",
-    "decimal": "194",
+    "name": "Red Jewel",
+    "decimal": "189",
     "count": 1,
     "progression": 1
   },
@@ -231,34 +231,6 @@
     "type": "Consumable",
     "name": "Hip Pouch",
     "decimal": "261",
-    "count": 1,
-    "progression": 0
-  },
-  {
-    "type": "Consumable",
-    "name": "Supply Case - G19 Extended Mag",
-    "decimal": "311",
-    "count": 1,
-    "progression": 0
-  },
-  {
-    "type": "Consumable",
-    "name": "Supply Case - G19 Moderator",
-    "decimal": "312",
-    "count": 1,
-    "progression": 0
-  },
-  {
-    "type": "Consumable",
-    "name": "Supply Case - Shotgun Shells",
-    "decimal": "313",
-    "count": 1,
-    "progression": 0
-  },
-  {
-    "type": "Consumable",
-    "name": "Supply Case - Flame Rounds",
-    "decimal": "314",
     "count": 1,
     "progression": 0
   },
@@ -452,6 +424,20 @@
     "name": "Acid Rounds",
     "decimal": "39",
     "count": 3,
+    "progression": 0
+  },
+  {
+    "type": "Ammo",
+    "name": "Supply Case - Shotgun Shells",
+    "decimal": "313",
+    "count": 1,
+    "progression": 0
+  },
+  {
+    "type": "Ammo",
+    "name": "Supply Case - Flame Rounds",
+    "decimal": "314",
+    "count": 1,
     "progression": 0
   },
 

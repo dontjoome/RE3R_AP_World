@@ -309,11 +309,6 @@
         "condition": {}
     },
 	{ 
-        "from": "Operations Room",
-        "to": "Operations Room 2",
-        "condition": {}
-    },
-	{ 
         "from": "Operations Room 2",
         "to": "West Hallway 1F",
         "condition": {}

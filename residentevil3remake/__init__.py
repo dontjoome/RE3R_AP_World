@@ -25,8 +25,12 @@ class RE3RLocation(Location):
         return RE3RLocation.stack_names(*area_names)
 
     def is_item_allowed(item, location_data, current_item_rule):
-        return current_item_rule and ('allow_item' not in location_data or item.name in location_data['allow_item'])
+        # Always allow items in the allow_item list
+        if 'allow_item' in location_data and item.name in location_data['allow_item']:
+            return True
 
+        # Otherwise, apply the current rule
+        return current_item_rule(item)
 
 class ResidentEvil3Remake(World):
     """
@@ -105,7 +109,7 @@ class ResidentEvil3Remake(World):
                     if not current_item_rule:
                         current_item_rule = lambda x: True
 
-                    location.item_rule = lambda item: RE3RLocation.is_item_allowed(item, location_data, current_item_rule)
+                    location.item_rule = lambda item, loc_data=location_data, cur_rule=current_item_rule: RE3RLocation.is_item_allowed(item, loc_data, cur_rule)
 
                 # now, set rules for the location access
                 if "condition" in location_data and "items" in location_data["condition"]:
@@ -289,8 +293,8 @@ class ResidentEvil3Remake(World):
         # Define the list of items to exclude from replacement
             excluded_items = {
                 'G18',
-                'Supply Case - G19 Extended Mag',
-                'Supply Case - G19 Moderator'
+                'Extended Mag - G19',
+                'Moderator - G19'
             }
 
             # Filter items to replace based on type and exclusion list
@@ -338,6 +342,7 @@ class ResidentEvil3Remake(World):
 
     def fill_slot_data(self) -> Dict[str, Any]:
         slot_data = {
+            "apworld_version": self.apworld_release_version,
             "character": self._get_character(),
             "scenario": self._get_scenario(),
             "difficulty": self._get_difficulty(),
